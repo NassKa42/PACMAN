@@ -19,6 +19,6 @@ int main(int argc, char** argv){
     fantome inky = initFantome();
     fantome pinky = initFantome();
     fantome clide = initFantome();
-    //abc   
+    
 
 }
