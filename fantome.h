@@ -6,8 +6,8 @@ struct GHOST
     
     int posX;
     int posY;
-    char dir;
-    
+    char dir[1];
+
 };
 
 typedef struct GHOST fantome;
