@@ -12,6 +12,6 @@ struct GHOST
 
 typedef struct GHOST fantome;
 fantome initFantome();
-
+char deplacement_fantome_rng(fantome ghost,plateau map);
 
 #endif
