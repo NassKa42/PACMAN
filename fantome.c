@@ -6,7 +6,7 @@ fantome initFantome(){
     fantome name;
     name.posX = 0;
     name.posY = 0;
-    name.dir = 'h';
+    strcpy(name.dir, 'h');
     return name;
 };
 
