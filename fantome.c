@@ -13,37 +13,37 @@ fantome initFantome(){
 char deplacement_fantome_rng(fantome ghost,plateau map){
     int collision = 0;
     int deplace = rand()%2;
-    
+    char direction = 'n';
         if ((ghost.dir == 'h' && map.tab[ghost.posY-1][ghost.posX] == 1) || (ghost.dir == 'b' && map.tab[ghost.posY+1][ghost.posX] == 1))
     {
         if (map.tab[ghost.posY][ghost.posX+1] == 1)
         {
-            return 'g';
+            direction = 'g';
         }else if (map.tab[ghost.posY][ghost.posX-1] == 1)
         {
-            return 'd';
+            direction = 'd';
         }else if (deplace==0)
         {
-            return 'd';
+            direction = 'd';
         }else
         {
-            return 'g';
+            direction = 'g';
         }   
     
     }else if ( (ghost.dir == 'g' && map.tab[ghost.posY][ghost.posX-1] == 1)|| (ghost.dir == 'd' && map.tab[ghost.posY][ghost.posX+1] == 1))
     {
         if (map.tab[ghost.posY+1][ghost.posX] == 1)
         {
-            return 'h';
+            direction = 'h';
         }else if (map.tab[ghost.posY-1][ghost.posX] == 1)
         {
-            return 'b';
+            direction = 'b';
         }else if (deplace==0)
         {
-            return 'h';
+            direction = 'h';
         }else
         {
-            return 'b';
+            direction = 'b';
         }   
     }    
     
