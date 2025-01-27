@@ -14,18 +14,18 @@ plateau initPlateau(char map[21][19]){
                 case 'v':
                     plat.tab[i][j] = 0;
                     break;
-                case 'm':
+                case 'w':
                     plat.tab[i][j] = 1;
                     break;
                 case 'g':
                     plat.tab[i][j] = 2;
                     break;
-                case 'h':
+                case 'm':
                     plat.tab[i][j] = 3;
                     break;
                 default:
                     break;
-                };
+                }
         }
     }
     return plat;
@@ -75,7 +75,7 @@ void graphPlateau(SDL_Renderer* ren,plateau plat){
                     break;
                 default:
                     break;
-                };
+                }
 
         }
     }
