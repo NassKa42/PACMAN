@@ -1,6 +1,6 @@
 #include "ressources.h"
 #include "fantome.h"
-
+/*
 fantome initFantome(){
     fantome name;
     name.posX = 0;
@@ -22,7 +22,4 @@ char deplacement_fantome_rng(fantome ghost,plateau map){
     
     
 
-}
-
-
-
+}*/
