@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "gestionGraphique.h"
 
 #define case 30
 #define pacsize 30
