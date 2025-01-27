@@ -12,7 +12,8 @@ MAP :
 9:fantome rose
 */
 #include "fantome.h"
-
+#include "plateau.h"
+#include "ressources.h"
 
 int main(int argc, char** argv){
     fantome blinky = initFantome();
