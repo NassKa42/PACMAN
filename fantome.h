@@ -6,7 +6,7 @@ struct GHOST
     
     int posX;
     int posY;
-    char dir[1];
+    char dir;
 
 };
 
