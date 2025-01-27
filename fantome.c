@@ -1,6 +1,5 @@
 #include "ressources.h"
 #include "fantome.h"
-#include "plateau.h"
 
 fantome initFantome(){
     fantome name;

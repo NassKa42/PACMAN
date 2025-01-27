@@ -1,6 +1,6 @@
 #ifndef FANTOME_H
 #define FANTOME_H
-
+#include "plateau.h"
 struct GHOST
 {
     
