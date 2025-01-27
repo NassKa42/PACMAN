@@ -12,7 +12,7 @@ fantome initFantome(){
 
 
 char deplacement_fantome_rng(fantome ghost,plateau map){
-    
+        
 
 }
 
