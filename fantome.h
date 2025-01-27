@@ -3,7 +3,6 @@
 #include "plateau.h"
 struct GHOST
 {
-    
     int posX;
     int posY;
     char dir;
@@ -12,6 +11,7 @@ struct GHOST
 
 typedef struct GHOST fantome;
 fantome initFantome();
-char deplacement_fantome_rng(fantome ghost,plateau map);
+fantome deplacement_fantome_rng(fantome ghost,plateau map);
+void caracfantome(fantome ghost);
 
 #endif
