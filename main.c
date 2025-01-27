@@ -16,7 +16,10 @@ MAP :
 #include "ressources.h"
 
 int main(int argc, char** argv){
-    
+    fantome blinky = initFantome();
+    fantome inky = initFantome();
+    fantome pinky = initFantome();
+    fantome clide = initFantome();
     char map[21][19]={
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'},
 {'w','g','g','g','g','g','g','g','g','w','g','g','g','g','g','g','g','g','w'},
