@@ -76,3 +76,26 @@ fantome deplacement_fantome_rng(fantome ghost,plateau map){
 void caracfantome(fantome ghost){
     printf("se situe en X = %d, Y = %d, direction = %c\n", ghost.posX, ghost.posY, ghost.dir);
 };
+
+
+struct pakuman{int posX; int posY};
+typedef struct pakuman pakkkk;
+
+fantome deplacement_fantome_possible(fantome ghost, plateau map, char dir){
+    switch (dir)
+    {
+    case 'h':
+        if (map.tab[ghost.posY +1][ghost.posX] == 1){}
+        break;
+    
+    default:
+        break;
+    }
+};
+
+fantome deplacement_fantome_proche(pakkkk pacman, fantome ghost, plateau map){
+
+
+
+
+};
