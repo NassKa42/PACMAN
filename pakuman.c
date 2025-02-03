@@ -21,24 +21,26 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
     int PosTableauY=pakuman.y/taillecase;
     int PosTableauXOpp=(pakuman.x+pacsize-1)/taillecase;
     int PosTableauYOpp=(pakuman.y+pacsize-1)/taillecase;
+    int PosDansCaseX=pakuman.x%taillecase;
+    int PosDansCaseY=pakuman.x%taillecase;
     switch (direction){
         case 'g' :
-            if (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1){
+            if (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1 && PosDansCaseX!=0){
                 pakuman.x= pakuman.x-5;
             };
             break;
         case 'd':
-            if (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1){
+            if (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1 && PosDansCaseX!=0){
                 pakuman.x= pakuman.x+5;
             };
             break;
         case 'h':
-            if (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1){
+            if (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1 && PosDansCaseY!=0){
                 pakuman.y= pakuman.y-5;
             };
             break;
         case 'b':
-            if (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1){
+            if (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1 && PosDansCaseY!=0){
                 pakuman.y= pakuman.y+5;
             };
             break;
@@ -46,6 +48,10 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
 return pakuman;
 };
 
+
+int CollisionAvecFantome(Player pakuman, fantome ghost){
+
+}
 // char regarderVers(){
 //     while (direction=' '){
 //         direction=processKeyboard();
