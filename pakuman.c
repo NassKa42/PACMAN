@@ -22,12 +22,12 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
     int PosTableauXOpp=(pakuman.x+pacsize-1)/taillecase;
     int PosTableauYOpp=(pakuman.y+pacsize-1)/taillecase;
     int PosDansCaseX=pakuman.x%taillecase;
-    int PosDansCaseY=pakuman.x%taillecase;
+    int PosDansCaseY=pakuman.y%taillecase;
     int PosOppDansCaseX=(pakuman.x+pacsize-1)%taillecase;
-    int PosOppDansCaseY=(pakuman.x+pacsize-1)%taillecase;
+    int PosOppDansCaseY=(pakuman.y+pacsize-1)%taillecase;
     switch (direction){
         case 'g' :
-            if ( (tableau.tab[PosTableauY][PosTableauX-1]!=1 && PosDansCaseY==0 ) || (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1 && PosDansCaseX!=0) ){
+            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseY==0 && tableau.tab[PosTableauY][(pakuman.x-1)/taillecase]!=1) || (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1 && PosDansCaseX!=0) ){
                 pakuman.x= pakuman.x-5;
             };
             break;
@@ -37,7 +37,7 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
             };
             break;
         case 'h':
-            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseX==0 ) || (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
+            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseX==0 && tableau.tab[(pakuman.y-1)/taillecase][PosTableauX]!=1 ) || (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
                 pakuman.y= pakuman.y-5;
             };
             break;
@@ -50,6 +50,56 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
 return pakuman;
 };
 
+int PeutBouger(char direction, Player pakuman, plateau tableau){
+    int PosTableauX=pakuman.x/taillecase;
+    int PosTableauY=pakuman.y/taillecase;
+    int PosDansCaseX=pakuman.x%taillecase;
+    int PosDansCaseY=pakuman.y%taillecase;
+    int PosTableauXOpp=(pakuman.x+pacsize-1)/taillecase;
+    int PosTableauYOpp=(pakuman.y+pacsize-1)/taillecase;
+    int oui=0;
+    switch (direction){
+        case 'g' :
+            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseY==0 && tableau.tab[PosTableauY][(pakuman.x-1)/taillecase]!=1) || (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1 && PosDansCaseX!=0) ){
+                oui=1;
+            };
+            break;
+        case 'd':
+            if ( (tableau.tab[PosTableauY][PosTableauX+1]!=1 && PosDansCaseY==0 ) || (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1 && PosDansCaseX!=0) ){
+                oui=1;
+            };
+            break;
+        case 'h':
+            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseX==0 && tableau.tab[(pakuman.y-1)/taillecase][PosTableauX]!=1 ) || (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
+                oui=1;
+            };
+            break;
+        case 'b':
+            if ( (tableau.tab[PosTableauY+1][PosTableauX]!=1 && PosDansCaseX==0 ) || (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
+                oui=1;
+            };
+            break;
+    };
+return oui;
+};
+
+Player BougerFinal(Player pakuman, char direction) {
+    switch(direction){
+        case 'g':
+            pakuman.x= pakuman.x-5;
+            break;
+        case 'd':
+            pakuman.x= pakuman.x+5;
+            break;
+        case 'b':
+            pakuman.y= pakuman.y+5;
+            break;
+        case 'h':
+            pakuman.y= pakuman.y-5;
+            break;
+    };
+    return pakuman;
+};
 int score_gum(Player pacman, tableau t){
     int gum = is_collision_p2gmgc(pacman.x,pacman.y,t);
     switch(gum){
