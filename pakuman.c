@@ -50,6 +50,22 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
 return pakuman;
 };
 
+int score_gum(Player pacman, tableau t){
+    int gum = is_collision_p2gmgc(pacman.x,pacman.y,t);
+    switch(gum){
+        case 0:
+            return 0;
+        case 1:
+            return 10;
+        case 2:
+            return 50;
+        case 3:
+            return 100;
+        default:
+            break;
+    }
+    return 0
+}
 
 // int CollisionAvecFantome(Player pakuman, fantome ghost){
 

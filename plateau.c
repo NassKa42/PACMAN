@@ -41,7 +41,7 @@ int affichePlateau(plateau t){
         printf("\n");
     };
     return 0;
-};
+}
 
 
 SDL_Renderer* graphPlateau(SDL_Renderer* ren,plateau plat){
@@ -89,19 +89,32 @@ int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée 
         return 0;
     };
 }
-int is_collision_p2g(int e_x, int e_y, plateau map){ // test collision entitée to block
-    for (int i = 0; i< map.large; i++){
-        for (int j = 0; j< map.haut; j++){
-            if (map.tab[i][j] == 2 || map.tab[i][j] == 3 || map.tab[i][j] == 4){
-                if (e_x >= (j*taillecase) && e_x <= (j+1)*taillecase){
-                    if (e_y >= (i*taillecase) && e_y <= (i+1)*taillecase){
-                        return 1;
-                    } 
-                }
-            }
-        }
+
+int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision entitée to block
+    if (map.tab[e_y/taillecase][e_x/taillecase]==2)
+    {
+        return 1;
+    }else if(map.tab[e_y/taillecase][e_x/taillecase]==3){
+        return 2;
+    }else if(map.tab[e_y/taillecase][e_x/taillecase]==4){
+        return 3;
+    }else{
+        return 0;
+    };
+}
+
+tableau remove_gum(int e_x, int e_y, plateau map){
+    int t_y = e_y/taillecase;
+    int t_x = e_x/taillecase;
+    switch(map.tab[t_y][t_x]){
+        case 1:
+            break;
+        case 0:
+            break;
+        default:
+            map.tab[t_y][t_x] = 0
     }
-    return 0;
+    return map
 }
 
 SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
@@ -235,3 +248,4 @@ SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char gh
 
     return ren;
 }
+
