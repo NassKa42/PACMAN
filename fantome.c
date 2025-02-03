@@ -13,12 +13,12 @@ fantome initFantome(int x, int y, char name[10]){
 fantome deplacement_fantome_rng(fantome ghost,plateau map){
     int collision = 0;
     int deplace = rand()%2;
-        if ((ghost.dir == 'h' && map.tab[ghost.posY-1][ghost.posX] == 1) || (ghost.dir == 'b' && map.tab[ghost.posY+1][ghost.posX] == 1))
+        if ((ghost.dir == 'h' && is_collision_e2b(ghost.posX, ghost.posY-1, map) == 1) || (ghost.dir == 'b' && is_collision_e2b(ghost.posX, ghost.posY+1+ghostsize, map)  == 1))
     {
-        if (map.tab[ghost.posY][ghost.posX+1] == 1)
+        if (is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 1)
         {
             ghost.dir = 'g';
-        }else if (map.tab[ghost.posY][ghost.posX-1] == 1)
+        }else if (is_collision_e2b(ghost.posX-1, ghost.posY, map)== 1)
         {
             ghost.dir = 'd';
         }else if (deplace==0)
@@ -29,12 +29,12 @@ fantome deplacement_fantome_rng(fantome ghost,plateau map){
             ghost.dir = 'g';
         }   
     
-    }else if ( (ghost.dir == 'g' && map.tab[ghost.posY][ghost.posX-1] == 1)|| (ghost.dir == 'd' && map.tab[ghost.posY][ghost.posX+1] == 1))
+    }else if ( (ghost.dir == 'g' && is_collision_e2b(ghost.posX-1, ghost.posY, map) == 1)|| (ghost.dir == 'd' && is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 1))
     {
-        if (map.tab[ghost.posY+1][ghost.posX] == 1)
+        if (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 1)
         {
             ghost.dir = 'h';
-        }else if (map.tab[ghost.posY-1][ghost.posX] == 1)
+        }else if (is_collision_e2b(ghost.posX, ghost.posY-1, map) == 1)
         {
             ghost.dir = 'b';
         }else if (deplace==0)
@@ -73,6 +73,39 @@ fantome deplacement_fantome_rng(fantome ghost,plateau map){
     
 
 };
+
+// fantome deplacement_fantome_rng(fantome ghost, plateau map) {
+//     // Liste des directions possibles (haut, bas, gauche, droite)
+//     char directions[4] = {'h', 'b', 'g', 'd'};
+//     int deplace = rand() % 4; // Choisit une direction aléatoire
+
+//     // Essaie de se déplacer dans la direction choisie
+//     for (int i = 0; i < 4; i++) {
+//         char dir = directions[(deplace + i) % 4]; // Commence par la direction aléatoire, puis essaie les autres
+
+//         int new_posX = ghost.posX;
+//         int new_posY = ghost.posY;
+
+//         // Calcule les nouvelles coordonnées en fonction de la direction
+//         switch (dir) {
+//             case 'h': new_posY--; break; // Haut
+//             case 'b': new_posY++; break; // Bas
+//             case 'g': new_posX--; break; // Gauche
+//             case 'd': new_posX++; break; // Droite
+//         }
+
+//         // Vérifie si le déplacement est possible (pas de collision)
+//         if (is_collision_e2b(new_posX, new_posY, map) == 0) {
+//             ghost.posX = new_posX;
+//             ghost.posY = new_posY;
+//             ghost.dir = dir; // Met à jour la direction du fantôme
+//             return ghost; // Retourne le fantôme déplacé
+//         }
+//     }
+
+//     // Si aucune direction n'est possible, retourne le fantôme sans le déplacer
+//     return ghost;
+// }
 
 fantome deplacement_fantome_rng2222(fantome ghost,plateau map){ //CHANGER LE NOM
     int deplace = rand()%2;
@@ -149,24 +182,24 @@ fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map){
     {
         //va a droite si possible   
         ghost.posX ++;
-        ghost.dir == 'd';
+        ghost.dir = 'd';
         return ghost;
              
-    }else if (ghost.posX > pacman.x && is_collision_e2b(ghost.posX+1, ghost.posY, map) == 0) // pacman a gauche
+    }else if (ghost.posX > pacman.x && is_collision_e2b(ghost.posX-1, ghost.posY, map) == 0) // pacman a gauche
     {
         ghost.posX --;
-        ghost.dir == 'g';
+        ghost.dir = 'g';
         return ghost;
         
     }else if (ghost.posY < pacman.y && (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 0)) // pacman en bas
     {
         ghost.posY ++;
-        ghost.dir == 'b';
+        ghost.dir = 'b';
         return ghost;
-    }else if (ghost.posY > pacman.y && is_collision_e2b(ghost.posX, ghost.posY+1, map) == 0 ) //pac en haut
+    }else if (ghost.posY > pacman.y && is_collision_e2b(ghost.posX, ghost.posY-1, map) == 0 ) //pac en haut
     {
         ghost.posY --;
-        ghost.dir == 'h';
+        ghost.dir = 'h';
         return ghost;
         }
     else
@@ -175,3 +208,67 @@ fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map){
     }
     };
 
+
+fantome deplacement_fantome_proche2(Player pacman, fantome ghost, plateau map){
+   int newposX = ghost.posX;
+   int newposY = ghost.posY;
+   if (ghost.posX < pacman.x && (is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 0)) // pacman a droite du pelo
+    {
+        //va a droite si possible   
+        ghost.posX ++;
+        ghost.dir = 'd';
+        printf("droit\n");
+        return ghost;
+             
+    }else if (ghost.posX > pacman.x && is_collision_e2b(ghost.posX-1, ghost.posY, map) == 0) // pacman a gauche
+    {
+        ghost.posX --;
+        ghost.dir = 'g';
+        printf("gauche\n");
+        return ghost;
+        
+    }else if (ghost.posY < pacman.y && (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 0)) // pacman en bas
+    {
+        ghost.posY ++;
+        ghost.dir = 'b';
+        printf("bas\n");
+        return ghost;
+    }else if (ghost.posY > pacman.y && is_collision_e2b(ghost.posX, ghost.posY-1, map) == 0 ) //pac en haut
+    {
+        ghost.posY --;
+        ghost.dir = 'h';
+        printf("haut\n");
+        return ghost;
+        }
+    else
+    {
+        printf("randomidzaulbbbbbbbbbbbbbbbbbbbbblllllllllllllllllllllllllllllllllllllllllllllllllllll\n");
+        return deplacement_fantome_rng(ghost, map);
+        
+    }
+    };
+
+/*
+GO droite
+        ghost.posX ++;
+        ghost.dir = 'd';
+        return ghost;
+
+GO gauche
+        ghost.posX --;
+        ghost.dir = 'g';
+        return ghost;
+
+GO haut
+        ghost.posY --;
+        ghost.dir = 'h';
+        return ghost;
+
+GO bas
+        ghost.posY ++;
+        ghost.dir = 'b';
+        return ghost;
+
+
+
+*/

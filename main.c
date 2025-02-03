@@ -20,7 +20,7 @@ MAP :
 int main(int argc, char** argv){
     int score = 0;
     fantome inky = initFantome(10,10, "inky");
-    fantome blinky = initFantome(9,9, "blinky");
+    fantome blinky = initFantome(6,12, "blinky");
     fantome pinky = initFantome(9,10, "pinky");
     fantome clyde = initFantome(8,10, "clyde");
     caracfantome(inky);
@@ -50,7 +50,8 @@ int main(int argc, char** argv){
 {'w','g','w','w','g','w','w','w','g','w','g','w','w','w','g','w','w','g','w'},
 {'w','g','g','g','g','g','g','g','g','w','g','g','g','g','g','g','g','g','w'},
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'}};
-    
+
+
     plateau t = initPlateau(map);
     //t.tab[start_y][start_x] = 4;
     initSDL();
@@ -86,6 +87,7 @@ int main(int argc, char** argv){
         };
         // printf("%d \n", PeutBouger(dir, pacman, t));
         pacman = BougerAvecTest(pacman, dir, t);
+        blinky = deplacement_fantome_proche(pacman, blinky, t);
         SDL_RenderClear(ren);
         score = score + score_gum(pacman, t);
         t = remove_gum(pacman.x,pacman.y,t);
@@ -102,9 +104,9 @@ int main(int argc, char** argv){
         if (score == 1820){
             finitopipo = 0;
         }
-
+        SDL_Delay(5);
     }
-    SDL_Delay(3000);
+    SDL_Delay(1000);
     QuitSDL(win, ren);
     return 0;
 }

@@ -80,16 +80,34 @@ SDL_Renderer* graphPlateau(SDL_Renderer* ren,plateau plat){
     return ren;
 }
 
-int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée to block
-    if (map.tab[e_y/taillecase][e_x/taillecase]==1)
-    {
-        return 1;
-    }else
-    {
-        return 0;
-    };
-}
+// int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée to block
+//     if (map.tab[e_y/taillecase][e_x/taillecase]==1)
+//     {
+//         return 1;
+//     }else
+//     {
+//         return 0;
+//     };
+// }
 
+
+int is_collision_e2b(int e_x, int e_y, plateau map) {
+    // Vérifie si les coordonnées sont dans les limites de la carte
+    if (e_x < 0 || e_x >= map.large * taillecase || e_y < 0 || e_y >= map.haut * taillecase) {
+        return 1; // Hors limites = collision
+    }
+
+    // Calcule les indices de la case dans la carte
+    int case_x = e_x / taillecase;
+    int case_y = e_y / taillecase;
+
+    // Vérifie si la case est un mur (1) ou un autre obstacle
+    if (map.tab[case_y][case_x] == 1) {
+        return 1; // Collision détectée
+    }
+
+    return 0; // Pas de collision
+}
 int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision entitée to block
     if (map.tab[e_y/taillecase][e_x/taillecase]==2)
     {
