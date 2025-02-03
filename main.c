@@ -64,11 +64,11 @@ int main(int argc, char** argv){
             dir = tempo;
         }
         ;
-        BougerAvecTest(pacman, dir, t);
+        pacman = BougerAvecTest(pacman, dir, t);
         SDL_RenderClear(ren);
         graphPlateau(ren, t);
         aff_pac(pacman.x, pacman.y, ren, dir);
-        printf("i was here");
+        printf("%c \n",dir);
     }
 
 }

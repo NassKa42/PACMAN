@@ -126,6 +126,6 @@ void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
         default :
             break;
     }
-    renderTexture(texture_pac,ren,e_x*pacsize,e_y*pacsize,pacsize,pacsize);
+    renderTexture(texture_pac,ren,e_x,e_y,pacsize,pacsize);
     updateDisplay(ren);
 }
