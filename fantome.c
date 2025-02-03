@@ -1,11 +1,11 @@
 #include "fantome.h"
 
-fantome initFantome(){
-    fantome name;
-    name.posX = 0;
-    name.posY = 0;
-    name.dir = 'h';
-    return name;
+fantome initFantome(int x, int y){
+    fantome ghost;
+    ghost.posX = x*taillecase;
+    ghost.posY = y*taillecase;
+    ghost.dir = 'h';
+    return ghost;
 };
 
 
@@ -173,3 +173,4 @@ fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map){
         return deplacement_fantome_rng(ghost, map);
     }
     };
+

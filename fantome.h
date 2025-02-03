@@ -4,7 +4,7 @@
 #include "pakuman.h"
 #include "ressources.h"
 
-struct GHOST
+struct StructFant
 {
     int posX;
     int posY;
@@ -12,8 +12,9 @@ struct GHOST
 
 };
 
-typedef struct GHOST fantome;
-fantome initFantome();
+typedef struct StructFant fantome;
+fantome initFantome(int x, int y);
+
 fantome deplacement_fantome_rng(fantome ghost,plateau map);
 void caracfantome(fantome ghost);
 fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map);
