@@ -68,10 +68,8 @@ int main(int argc, char** argv){
         SDL_RenderClear(ren);
         graphPlateau(ren, t);
         aff_pac(pacman.x, pacman.y, ren, dir);
-
-
+        printf("i was here");
     }
-    
 
 }
 
