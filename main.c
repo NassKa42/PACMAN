@@ -57,7 +57,8 @@ int main(int argc, char** argv){
     initTTF();
     SDL_Window * win = SDL_CreateWindow("My video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 19*30, 21*30, SDL_WINDOW_RESIZABLE);
     SDL_Renderer * ren = createRenderer(win);
-    
+    SDL_Color Black ={0,0,0,0};
+    TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
     graphPlateau(ren,t);
     updateDisplay(ren);
 
@@ -86,16 +87,25 @@ int main(int argc, char** argv){
         // printf("%d \n", PeutBouger(dir, pacman, t));
         pacman = BougerAvecTest(pacman, dir, t);
         SDL_RenderClear(ren);
+        score = score + score_gum(pacman, t);
+        t = remove_gum(pacman.x,pacman.y,t);
         ren = graphPlateau(ren, t);
         ren = aff_pac(pacman.x, pacman.y, ren, dir);
         ren = aff_fantome(blinky.posX,blinky.posY,ren,dir,blinky.name);
         ren = aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
         ren = aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
         ren = aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
-        printf("%c \n",dir);
+        // char text[14] = sprintf("Score : %d",score);
+        // printText(0,0,text,60,30,font,Black,ren);
+        //printf("%c , %d \n",dir, score);
         updateDisplay(ren);
+        if (score == 1820){
+            finitopipo = 0;
+        }
 
     }
-
+    SDL_Delay(3000);
+    QuitSDL(win, ren);
+    return 0;
 }
 

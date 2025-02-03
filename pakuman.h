@@ -24,6 +24,6 @@ Player bougerdirect(char direction, Player pakuman);
 Player BougerAvecTest(Player pakuman,char direction,plateau tableau);
 int PeutBouger(char direction, Player pakuman, plateau tableau);
 Player BougerFinal(Player pakuman, char direction);
-int score_gum(Player pacman, tableau t);
+int score_gum(Player pacman, plateau t);
 
 #endif

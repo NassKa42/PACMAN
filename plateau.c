@@ -103,7 +103,7 @@ int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision entitÃ
     };
 }
 
-tableau remove_gum(int e_x, int e_y, plateau map){
+plateau remove_gum(int e_x, int e_y, plateau map){
     int t_y = e_y/taillecase;
     int t_x = e_x/taillecase;
     switch(map.tab[t_y][t_x]){
@@ -112,9 +112,9 @@ tableau remove_gum(int e_x, int e_y, plateau map){
         case 0:
             break;
         default:
-            map.tab[t_y][t_x] = 0
+            map.tab[t_y][t_x] = 0;
     }
-    return map
+    return map;
 }
 
 SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){

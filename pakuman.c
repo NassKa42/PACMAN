@@ -100,7 +100,7 @@ Player BougerFinal(Player pakuman, char direction) {
     };
     return pakuman;
 };
-int score_gum(Player pacman, tableau t){
+int score_gum(Player pacman, plateau t){
     int gum = is_collision_p2gmgc(pacman.x,pacman.y,t);
     switch(gum){
         case 0:
@@ -114,7 +114,7 @@ int score_gum(Player pacman, tableau t){
         default:
             break;
     }
-    return 0
+    return 0;
 }
 
 // int CollisionAvecFantome(Player pakuman, fantome ghost){
