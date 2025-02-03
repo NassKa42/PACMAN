@@ -4,6 +4,7 @@
 #include <string.h>
 #include "plato.h"
 #include "ressources.h"
+#include "plateau.h"
 
 
 
@@ -16,7 +17,7 @@ Player initPlayer(char* name){
     return personnage;
 };
 
-Player BougerAvecTest(Player pakuman,char direction){
+Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
     int PosTableauX=pakuman.x/taillecase;
     int PosTableauY=pakuman.y/taillecase;
     int PosTableauXOpp=(pakuman.x+pacsize-1)/taillecase;

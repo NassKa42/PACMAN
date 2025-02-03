@@ -144,25 +144,25 @@ void caracfantome(fantome ghost){
 
 
 fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map){
-    if (ghost.posX < pacman.Pos_X && (is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 0)) // pacman a droite du pelo
+    if (ghost.posX < pacman.x && (is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 0)) // pacman a droite du pelo
     {
         //va a droite si possible   
         ghost.posX ++;
         ghost.dir == 'd';
         return ghost;
              
-    }else if (ghost.posX > pacman.Pos_X && is_collision_e2b(ghost.posX+1, ghost.posY, map) == 0) // pacman a gauche
+    }else if (ghost.posX > pacman.x && is_collision_e2b(ghost.posX+1, ghost.posY, map) == 0) // pacman a gauche
     {
         ghost.posX --;
         ghost.dir == 'g';
         return ghost;
         
-    }else if (ghost.posY < pacman.Pos_Y && (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 0)) // pacman en bas
+    }else if (ghost.posY < pacman.y && (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 0)) // pacman en bas
     {
         ghost.posY ++;
         ghost.dir == 'b';
         return ghost;
-    }else if (ghost.posY > pacman.Pos_Y && is_collision_e2b(ghost.posX, ghost.posY+1, map) == 0 ) //pac en haut
+    }else if (ghost.posY > pacman.y && is_collision_e2b(ghost.posX, ghost.posY+1, map) == 0 ) //pac en haut
     {
         ghost.posY --;
         ghost.dir == 'h';

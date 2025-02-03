@@ -51,6 +51,14 @@ int main(int argc, char** argv){
     SDL_Renderer * ren = createRenderer(win);
     TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
     graphPlateau(ren,t);
-   
+    int finitopipo = 1;
+    char dir = 'd';
+    while (finitopipo ==1)
+    {   
+        dir = processKeyboard();
+        boug
+    }
+    
+
 }
 
