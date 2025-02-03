@@ -81,7 +81,6 @@ void graphPlateau(SDL_Renderer* ren,plateau plat){
     }
     SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
     updateDisplay(ren);
-    SDL_Delay(3000);
 }
 
 int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée to block
@@ -127,6 +126,6 @@ void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
         default :
             break;
     }
-    renderTexture(texture_pac,ren,e_x*pacsize,e_y*pacsize,pacsize,pacsize);
+    renderTexture(texture_pac,ren,e_x,e_y,pacsize,pacsize);
     updateDisplay(ren);
 }
