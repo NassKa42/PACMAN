@@ -44,14 +44,13 @@ int main(int argc, char** argv){
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'}};
     
     plateau t = initPlateau(map);
-    t.tab[start_y][start_x] = 5;
+    t.tab[start_y][start_x] = 4;
     initSDL();
     initTTF();
     SDL_Window * win = SDL_CreateWindow("My video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 19*30, 21*30, SDL_WINDOW_RESIZABLE);
     SDL_Renderer * ren = createRenderer(win);
     TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
     graphPlateau(ren,t);
-    
+   
 }
-    //abc   
 
