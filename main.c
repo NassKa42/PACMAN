@@ -20,11 +20,11 @@ int main(int argc, char** argv){
     fantome inky = initFantome(10,10, "inky");
     fantome blinky = initFantome(9,9, "blinky");
     fantome pinky = initFantome(9,10, "pinky");
-    fantome clide = initFantome(8,10, "clide");
+    fantome clyde = initFantome(8,10, "clyde");
     caracfantome(inky);
     caracfantome(blinky);
     caracfantome(pinky);
-    caracfantome(clide);
+    caracfantome(clyde);
     Player pacman = initPlayer("Perso1");
     char map[21][19]={
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'},
