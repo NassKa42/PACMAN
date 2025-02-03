@@ -2,7 +2,8 @@
 #include <SDL2/SDL.h>
 #include "pakuman.h"
 #include <string.h>
-#include "plato.h"
+#include "ressources.h"
+#include "plateau.h"
 
 
 
@@ -15,7 +16,35 @@ Player initPlayer(char* name){
     return personnage;
 };
 
-
+Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
+    int PosTableauX=pakuman.x/taillecase;
+    int PosTableauY=pakuman.y/taillecase;
+    int PosTableauXOpp=(pakuman.x+pacsize-1)/taillecase;
+    int PosTableauYOpp=(pakuman.y+pacsize-1)/taillecase;
+    switch (direction){
+        case 'g' :
+            if (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1){
+                pakuman.x= pakuman.x-5;
+            };
+            break;
+        case 'd':
+            if (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1){
+                pakuman.x= pakuman.x+5;
+            };
+            break;
+        case 'h':
+            if (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1){
+                pakuman.y= pakuman.y-5;
+            };
+            break;
+        case 'b':
+            if (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1){
+                pakuman.y= pakuman.y+5;
+            };
+            break;
+    };
+return pakuman;
+};
 
 // char regarderVers(){
 //     while (direction=' '){
@@ -23,61 +52,48 @@ Player initPlayer(char* name){
 //     };
 //     return direction
 // ;}
-
-int bouger(char direction, Player pakuman){
+/*
+int bouger(char direction, Player pakuman, plateau tabl){
     if (direction='d') {
-        if (plateau[pakuman.Pos_X][pakuman.Pos_Y+1]!=1){
-            pakuman.Pos_Y= pakuman.Pos_Y+5
+        if (plateau[pakuman.x][pakuman.y+1]!=1){
+            pakuman.y= pakuman.y+5
         ;}
     ;};
     if (direction='g') {
-        if (plateau[pakuman.Pos_X][pakuman.Pos_Y-1]!=1){
-            pakuman.Pos_Y= pakuman.Pos_Y-5
+        if (plateau[pakuman.x][pakuman.y-1]!=1){
+            pakuman.y= pakuman.y-5
         ;}
     ;};
     if (direction='h') {
-        if (plateau[pakuman.Pos_X-1][pakuman.Pos_Y]!=1){
-            pakuman.Pos_X= pakuman.Pos_X-5
+        if (plateau[pakuman.x-1][pakuman.y]!=1){
+            pakuman.x= pakuman.x-5
         ;}
     ;};
     if (direction='b') {
-        if (plateau[pakuman.Pos_X+1][pakuman.Pos_Y+1]!=1){
-            pakuman.Pos_X= pakuman.Pos_X+5
+        if (plateau[pakuman.x+1][pakuman.y+1]!=1){
+            pakuman.x= pakuman.x+5
         ;}
     ;}
 
 }
 
 Player bougerdirect(char direction, Player name){
-    // if (direction='d') {
-    //         name.Pos_Y= name.Pos_Y+5
-    // ;};
-    // if (direction='g') {
-    //         name.Pos_Y= name.Pos_Y-5
-    // ;};
-    // if (direction='h') {
-    //         name.Pos_X= name.Pos_X-5
-    // ;};
-    // if (direction='b') {
-    //         name.Pos_X= name.Pos_X+5
-    //         ;printf("azertyuio")
-    // ;};
     switch (direction)
     {
     case 'd':
-        name.Pos_Y= name.Pos_X+5;
+        name.y= name.x+5;
         break;
     case 'g':
-        name.Pos_Y= name.Pos_X-5;
+        name.y= name.x-5;
         break;
     case 'h':
-        name.Pos_X= name.Pos_Y-5;
+        name.x= name.y-5;
         break;
     case 'b':
-        name.Pos_X= name.Pos_Y+5;
+        name.x= name.y+5;
         break;
     default:
         break;
     }
     return name;
-}
+}*/
