@@ -57,8 +57,9 @@ int main(int argc, char** argv){
     initTTF();
     SDL_Window * win = SDL_CreateWindow("My video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 19*30, 21*30, SDL_WINDOW_RESIZABLE);
     SDL_Renderer * ren = createRenderer(win);
-    TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
+    
     graphPlateau(ren,t);
+    updateDisplay(ren);
 
     int finitopipo = 1;
     char dir;
