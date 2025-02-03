@@ -2,7 +2,7 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 #include "ressources.h"
-
+#include "fantome.h"
 
 struct plateauSt{
     int haut;
