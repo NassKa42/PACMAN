@@ -1,5 +1,5 @@
 #include "plateau.h"
-#include "fantome.h"
+
 
 
 
@@ -135,34 +135,36 @@ void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
 
 void aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10]){
     char nom_doc[12];
+    char pos = ' ';
+    char ghost_number = ' ';
     switch(dir){
         case 'h':
-            char pos= '1';
+            pos= '1';
             break;
         case 'b':
-            char pos= '3';
+            pos= '3';
             break;
         case 'g':
-            char pos= '2';
+            pos= '2';
             break;
         case 'd':
-            char pos= '0';
+            pos= '0';
             break;
         default :
             break;
     }
-    switch(ghost_name){
-        case "blinky":
-            char ghost_number= '1';
+    switch(ghost_name[0]){
+        case 'b':
+            ghost_number= '1';
             break;
-        case "pinky":
-            char ghost_number= '2';
+        case 'p':
+            ghost_number= '2';
             break;
-        case 'inky':
-            char ghost_number= '3';
+        case 'i':
+            ghost_number= '3';
             break;
-        case "clyde":
-            char ghost_number= '4';
+        case 'c':
+            ghost_number= '4';
             break;
         default :
             break;

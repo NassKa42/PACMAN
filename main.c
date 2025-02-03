@@ -73,6 +73,10 @@ int main(int argc, char** argv){
         SDL_RenderClear(ren);
         graphPlateau(ren, t);
         aff_pac(pacman.x, pacman.y, ren, dir);
+        aff_fantome(blinky.posX,blinky.posY,ren,dir,blinky.name);
+        aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
+        aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
+        aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
         printf("%c \n",dir);
 
     }
