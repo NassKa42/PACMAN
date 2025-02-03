@@ -17,10 +17,14 @@ MAP :
 #include "pakuman.h"
 
 int main(int argc, char** argv){
-    fantome inky = initFantome(10,10);
-    fantome blinky = initFantome(9,9);
-    fantome pinky = initFantome(9,10);
-    fantome clide = initFantome(8,10);
+    fantome inky = initFantome(10,10, "inky");
+    fantome blinky = initFantome(9,9, "blinky");
+    fantome pinky = initFantome(9,10, "pinky");
+    fantome clide = initFantome(8,10, "clide");
+    caracfantome(inky);
+    caracfantome(blinky);
+    caracfantome(pinky);
+    caracfantome(clide);
     Player pacman = initPlayer("Perso1");
     char map[21][19]={
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'},
@@ -53,7 +57,7 @@ int main(int argc, char** argv){
     SDL_Renderer * ren = createRenderer(win);
     TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
     graphPlateau(ren,t);
-    
+
     int finitopipo = 1;
     char dir = 'd';
     char tempo;
