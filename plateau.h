@@ -12,5 +12,7 @@ plateau initPlateau();
 int affichePlateau(plateau t);
 void graphPlateau(SDL_Renderer* renderer,plateau plat);
 int is_collision_e2b(int e_x, int e_y, plateau map);
+int is_collision_p2g(int e_x, int e_y, plateau map);
+void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir);
 
 #endif

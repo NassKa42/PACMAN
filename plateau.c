@@ -59,19 +59,19 @@ void graphPlateau(SDL_Renderer* ren,plateau plat){
 
                     break;
                 case 1:
-                    renderTexture(wall,ren,j*30,i*30,30,30);
+                    renderTexture(wall,ren,j*taillecase,i*taillecase,taillecase,taillecase);
                     break;
                 case 2:
-                    renderTexture(gum,ren,j*30,i*30,30,30);
+                    renderTexture(gum,ren,j*taillecase,i*taillecase,taillecase,taillecase);
                     break;
                 case 3:
-                    renderTexture(biggum,ren,j*30,i*30,30,30);
+                    renderTexture(biggum,ren,j*taillecase,i*taillecase,taillecase,taillecase);
                     break;
                 case 4:
-                    renderTexture(cerise,ren,j*30,i*30,30,30);
+                    renderTexture(cerise,ren,j*taillecase,i*taillecase,taillecase,taillecase);
                     break;
                 // case 5:
-                //     renderTexture(pacman_d,ren,j*30,i*30,30,30);
+                //     renderTexture(pacman_d,ren,j*taillecase,i*taillecase,taillecase,taillecase);
                 //     break;
                 default:
                     break;
@@ -97,4 +97,36 @@ int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée 
         }
     }
     return 0;
+}
+int is_collision_p2g(int e_x, int e_y, plateau map){ // test collision entitée to block
+    for (int i = 0; i< map.large; i++){
+        for (int j = 0; j< map.haut; j++){
+            if (map.tab[i][j] == 2 || map.tab[i][j] == 3 || map.tab[i][j] == 4){
+                if (e_x >= (j*taillecase) && e_x <= (j+1)*taillecase){
+                    if (e_y >= (i*taillecase) && e_y <= (i+1)*taillecase){
+                        return 1;
+                    } 
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
+    SDL_Texture* texture_pac = loadTexture("pakuman_0.bmp",ren);
+    switch(dir){
+        case 'h':
+            texture_pac = loadTexture("pakuman_1.bmp",ren);
+        case 'b':
+            texture_pac = loadTexture("pakuman_3.bmp",ren);
+        case 'g':
+            texture_pac = loadTexture("pakuman_2.bmp",ren);
+        case 'd':
+            texture_pac = loadTexture("pakuman_0.bmp",ren);
+        default :
+            break;
+    }
+    renderTexture(texture_pac,ren,e_x*pacsize,e_y*pacsize,pacsize,pacsize);
+    updateDisplay(ren);
 }
