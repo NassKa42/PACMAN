@@ -23,24 +23,26 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
     int PosTableauYOpp=(pakuman.y+pacsize-1)/taillecase;
     int PosDansCaseX=pakuman.x%taillecase;
     int PosDansCaseY=pakuman.x%taillecase;
+    int PosOppDansCaseX=(pakuman.x+pacsize-1)%taillecase;
+    int PosOppDansCaseY=(pakuman.x+pacsize-1)%taillecase;
     switch (direction){
         case 'g' :
-            if (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1 && PosDansCaseX!=0){
+            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseY==0 ) || (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1 && PosDansCaseX!=0) ){
                 pakuman.x= pakuman.x-5;
             };
             break;
         case 'd':
-            if (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1 && PosDansCaseX!=0){
+            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosOppDansCaseY==29 ) || (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1 && PosDansCaseX!=0) ){
                 pakuman.x= pakuman.x+5;
             };
             break;
         case 'h':
-            if (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1 && PosDansCaseY!=0){
+            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseX==0 ) || (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
                 pakuman.y= pakuman.y-5;
             };
             break;
         case 'b':
-            if (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1 && PosDansCaseY!=0){
+            if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosOppDansCaseX==29 ) || (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
                 pakuman.y= pakuman.y+5;
             };
             break;
