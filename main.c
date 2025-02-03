@@ -63,7 +63,7 @@ int main(int argc, char** argv){
 
     int finitopipo = 1;
     char dir;
-    dir = start();
+    dir = start(t, ren);
     char tempo;
     while (finitopipo ==1)
     {   
