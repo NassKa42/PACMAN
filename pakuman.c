@@ -9,8 +9,8 @@
 
 Player initPlayer(char* name){
     Player personnage;
-    personnage.Pos_X = 0;
-    personnage.Pos_Y = 0;
+    personnage.x = 0;
+    personnage.y = 0;
     personnage.orientation = 'd';
     personnage.score = 0;
     return personnage;

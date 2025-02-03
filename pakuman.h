@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <string.h>
-
+#include "plateau.h"
 //0: vide
 //1: mur
 //2: gum
@@ -16,11 +16,11 @@
 #ifndef PatoisDuNord
 #define PatoisDuNord
 
-struct PlayerStruct{char name; int Pos_X; int Pos_Y; char orientation; int score;};
+struct PlayerStruct{char name; int x; int y; char orientation; int score;};
 typedef struct PlayerStruct Player;
 Player initPlayer(char* name);
 int bouger(char direction, Player pakuman);
 Player bougerdirect(char direction, Player pakuman);
-Player BougerAvecTest(Player pakuman,char direction);
+Player BougerAvecTest(Player pakuman,char direction,plateau tableau);
 
 #endif
