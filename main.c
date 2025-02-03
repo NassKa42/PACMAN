@@ -14,6 +14,7 @@ MAP :
 #include "fantome.h"
 #include "plateau.h"
 #include "ressources.h"
+#include "pakuman.h"
 
 int main(int argc, char** argv){
     fantome blinky = initFantome();
@@ -58,7 +59,6 @@ int main(int argc, char** argv){
     while (finitopipo ==1)
     {   
         dir = processKeyboard();
-        
     }
     
 
