@@ -44,7 +44,7 @@ int affichePlateau(plateau t){
 };
 
 
-void graphPlateau(SDL_Renderer* ren,plateau plat){
+SDL_Renderer* graphPlateau(SDL_Renderer* ren,plateau plat){
     SDL_Texture* gum = loadTexture("gum.bmp",ren);
     SDL_Texture* wall = loadTexture("wall.bmp",ren);
     SDL_Texture* biggum = loadTexture("bigGum.bmp",ren);
@@ -77,7 +77,7 @@ void graphPlateau(SDL_Renderer* ren,plateau plat){
         }
     }
     SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
-    updateDisplay(ren);
+    return ren;
 }
 
 int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée to block
@@ -109,7 +109,7 @@ int is_collision_p2g(int e_x, int e_y, plateau map){ // test collision entitée 
     return 0;
 }
 
-void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
+SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
     SDL_Texture* texture_pac_0 = loadTexture("pakuman_0.bmp",ren);
     SDL_Texture* texture_pac_1 = loadTexture("pakuman_1.bmp",ren);
     SDL_Texture* texture_pac_2 = loadTexture("pakuman_2.bmp",ren);
@@ -130,44 +130,114 @@ void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
         default :
             break;
     }
-    updateDisplay(ren);
+    return ren;
 }
 
-void aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10]){
-    char nom_doc[12];
-    char pos = ' ';
-    char ghost_number = ' ';
+SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10]){
+    // char nom_doc[15];
+    // nom_doc[0] = 'f';
+    // printf("%s \n",nom_doc);
+    // printf("%c , \\0 \n", nom_doc[14] );
+    // char pos = ' ';
+    // char ghost_number = ' ';
+    char nom_doc[13];
     switch(dir){
         case 'h':
-            pos= '1';
+            switch(ghost_name[0]){
+                case 'b':
+                    strcpy(nom_doc, "ghost1_1.bmp");
+                    break;
+                case 'p':
+                    strcpy(nom_doc, "ghost2_1.bmp");
+                    break;
+                case 'i':
+                    strcpy(nom_doc, "ghost3_1.bmp");
+                    break;
+                case 'c':
+                    strcpy(nom_doc, "ghost4_1.bmp");
+                    break;
+                default :
+                    break;
+            }
             break;
         case 'b':
-            pos= '3';
-            break;
+            switch(ghost_name[0]){
+                case 'b':
+                    strcpy(nom_doc, "ghost1_3.bmp");
+                    break;
+                case 'p':
+                    strcpy(nom_doc, "ghost2_3.bmp");
+                    break;
+                case 'i':
+                    strcpy(nom_doc, "ghost3_3.bmp");
+                    break;
+                case 'c':
+                    strcpy(nom_doc, "ghost4_3.bmp");
+                    break;
+                default :
+                    break;
+                }
+                break;
         case 'g':
-            pos= '2';
-            break;
+            switch(ghost_name[0]){
+                case 'b':
+                    strcpy(nom_doc, "ghost1_2.bmp");
+                    break;
+                case 'p':
+                    strcpy(nom_doc, "ghost2_2.bmp");
+                    break;
+                case 'i':
+                    strcpy(nom_doc, "ghost3_2.bmp");
+                    break;
+                case 'c':
+                    strcpy(nom_doc, "ghost4_2.bmp");
+                    break;
+                default :
+                    break;
+                }
+                break;
         case 'd':
-            pos= '0';
-            break;
+            switch(ghost_name[0]){
+                case 'b':
+                    strcpy(nom_doc, "ghost1_0.bmp");
+                    break;
+                case 'p':
+                    strcpy(nom_doc, "ghost2_0.bmp");
+                    break;
+                case 'i':
+                    strcpy(nom_doc, "ghost3_0.bmp");
+                    break;
+                case 'c':
+                    strcpy(nom_doc, "ghost4_0.bmp");
+                    break;
+                default :
+                    break;
+                }
+                break;
         default :
             break;
     }
-    switch(ghost_name[0]){
-        case 'b':
-            ghost_number= '1';
-            break;
-        case 'p':
-            ghost_number= '2';
-            break;
-        case 'i':
-            ghost_number= '3';
-            break;
-        case 'c':
-            ghost_number= '4';
-            break;
-        default :
-            break;
-    }
-    updateDisplay(ren);
+    SDL_Texture* text_ghost = loadTexture(nom_doc,ren);
+    printf("here");
+    renderTexture(text_ghost,ren,e_x,e_y,ghostsize,ghostsize);
+    // char ghost[5] = "ghost";
+    // int compteur;
+    // for (int i = 0; ghost[i]!='\0'; i++){
+    //     nom_doc[compteur] = ghost[i];
+    //     compteur ++;
+    // }
+    // compteur ++;
+    // nom_doc[compteur] = ghost_number;
+    // compteur ++;
+    // nom_doc[compteur] = '_';
+    // compteur ++;
+    // nom_doc[compteur] = pos;
+    // char bmp[4] = ".bmp";
+    // for (int j = 0; bmp[j]!='\0';j++){
+    //     nom_doc[compteur] = bmp[j];
+    //     compteur ++;
+    // }
+    // printf("%s , final \n",nom_doc);
+
+    return ren;
 }

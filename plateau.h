@@ -12,10 +12,10 @@ struct plateauSt{
 typedef struct plateauSt plateau;
 plateau initPlateau();
 int affichePlateau(plateau t);
-void graphPlateau(SDL_Renderer* renderer,plateau plat);
+SDL_Renderer* graphPlateau(SDL_Renderer* renderer,plateau plat);
 int is_collision_e2b(int e_x, int e_y, plateau map);
 int is_collision_p2g(int e_x, int e_y, plateau map);
-void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir);
-void aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10]);
+SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir);
+SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10]);
 
 #endif
