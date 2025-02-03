@@ -81,18 +81,13 @@ SDL_Renderer* graphPlateau(SDL_Renderer* ren,plateau plat){
 }
 
 int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée to block
-    for (int i = 0; i< map.large; i++){
-        for (int j = 0; j< map.haut; j++){
-            if (map.tab[i][j] == 1){
-                if (e_x >= (j*taillecase) && e_x <= (j+1)*taillecase){
-                    if (e_y >= (i*taillecase) && e_y <= (i+1)*taillecase){
-                        return 1;
-                    } 
-                }
-            }
-        }
-    }
-    return 0;
+    if (map.tab[e_y/taillecase][e_x/taillecase]==1)
+    {
+        return 1;
+    }else
+    {
+        return 0;
+    };
 }
 int is_collision_p2g(int e_x, int e_y, plateau map){ // test collision entitée to block
     for (int i = 0; i< map.large; i++){
