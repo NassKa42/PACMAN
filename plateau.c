@@ -218,7 +218,6 @@ SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char gh
             break;
     }
     SDL_Texture* text_ghost = loadTexture(nom_doc,ren);
-    printf("here");
     renderTexture(text_ghost,ren,e_x,e_y,ghostsize,ghostsize);
     // char ghost[5] = "ghost";
     // int compteur;

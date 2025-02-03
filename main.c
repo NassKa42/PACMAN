@@ -15,8 +15,10 @@ MAP :
 #include "plateau.h"
 #include "ressources.h"
 #include "pakuman.h"
+#include "jeu.h"
 
 int main(int argc, char** argv){
+    int score = 0;
     fantome inky = initFantome(10,10, "inky");
     fantome blinky = initFantome(9,9, "blinky");
     fantome pinky = initFantome(9,10, "pinky");
@@ -59,7 +61,8 @@ int main(int argc, char** argv){
     graphPlateau(ren,t);
 
     int finitopipo = 1;
-    char dir = 'd';
+    char dir;
+    dir = start();
     char tempo;
     while (finitopipo ==1)
     {   
@@ -71,12 +74,12 @@ int main(int argc, char** argv){
         ;
         pacman = BougerAvecTest(pacman, dir, t);
         SDL_RenderClear(ren);
-        ren =graphPlateau(ren, t);
-        ren =aff_pac(pacman.x, pacman.y, ren, dir);
-        ren =aff_fantome(blinky.posX,blinky.posY,ren,dir,blinky.name);
-        ren =aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
-        ren =aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
-        ren =aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
+        ren = graphPlateau(ren, t);
+        ren = aff_pac(pacman.x, pacman.y, ren, dir);
+        ren = aff_fantome(blinky.posX,blinky.posY,ren,dir,blinky.name);
+        ren = aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
+        ren = aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
+        ren = aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
         printf("%c \n",dir);
         updateDisplay(ren);
 
