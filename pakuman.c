@@ -2,7 +2,6 @@
 #include <SDL2/SDL.h>
 #include "pakuman.h"
 #include <string.h>
-#include "plato.h"
 #include "ressources.h"
 #include "plateau.h"
 
@@ -24,22 +23,22 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
     int PosTableauYOpp=(pakuman.y+pacsize-1)/taillecase;
     switch (direction){
         case 'g' :
-            if (tableau[PosTableauY][PosTableauX-1]!=1 && tableau[PosTableauYOpp][PosTableauXOpp-1]!=1){
+            if (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1){
                 pakuman.x= pakuman.x-5;
             };
             break;
         case 'd':
-            if (tableau[PosTableauY][PosTableauX+1]!=1 && tableau[PosTableauYOpp][PosTableauXOpp+1]!=1){
+            if (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1){
                 pakuman.x= pakuman.x+5;
             };
             break;
         case 'h':
-            if (tableau[PosTableauY-1][PosTableauX]!=1 && tableau[PosTableauYOpp-1][PosTableauXOpp]!=1){
+            if (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1){
                 pakuman.y= pakuman.y-5;
             };
             break;
         case 'b':
-            if (tableau[PosTableauY+1][PosTableauX]!=1 && tableau[PosTableauYOpp+1][PosTableauXOpp]!=1){
+            if (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1){
                 pakuman.y= pakuman.y+5;
             };
             break;
@@ -53,8 +52,8 @@ return pakuman;
 //     };
 //     return direction
 // ;}
-
-int bouger(char direction, Player pakuman){
+/*
+int bouger(char direction, Player pakuman, plateau tabl){
     if (direction='d') {
         if (plateau[pakuman.x][pakuman.y+1]!=1){
             pakuman.y= pakuman.y+5
@@ -97,4 +96,4 @@ Player bougerdirect(char direction, Player name){
         break;
     }
     return name;
-}
+}*/

@@ -20,6 +20,7 @@ int main(int argc, char** argv){
     fantome inky = initFantome();
     fantome pinky = initFantome();
     fantome clide = initFantome();
+    Player pacman = initPlayer("Perso1");
     char map[21][19]={
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'},
 {'w','g','g','g','g','g','g','g','g','w','g','g','g','g','g','g','g','g','w'},
@@ -53,10 +54,11 @@ int main(int argc, char** argv){
     graphPlateau(ren,t);
     int finitopipo = 1;
     char dir = 'd';
+    
     while (finitopipo ==1)
     {   
         dir = processKeyboard();
-        boug
+        
     }
     
 
