@@ -65,14 +65,25 @@ int main(int argc, char** argv){
     char dir;
     dir = start(t, ren);
     char tempo;
+    char secondaire;
     while (finitopipo ==1)
     {   
         tempo = processKeyboard();
-        if (tempo != ' ')
-        {
-            dir = tempo;
+        if (tempo != ' ') {
+            if (PeutBouger(tempo, pacman, t)==1){
+                dir=tempo;
+            }
+            else {
+                secondaire=tempo;
+            };
         }
-        ;
+        else{
+            if(secondaire != ' ' && PeutBouger(secondaire, pacman, t)==1){
+                dir = secondaire;
+                secondaire=' ';
+            };
+        };
+        // printf("%d \n", PeutBouger(dir, pacman, t));
         pacman = BougerAvecTest(pacman, dir, t);
         SDL_RenderClear(ren);
         ren = graphPlateau(ren, t);
