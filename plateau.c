@@ -1,5 +1,5 @@
 #include "plateau.h"
-
+#include "fantome.h"
 
 
 
@@ -133,23 +133,36 @@ void aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
     updateDisplay(ren);
 }
 
-void aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, fantome ghost){
-    SDL_Texture* texture_pac_0 = loadTexture("pakuman_0.bmp",ren);
-    SDL_Texture* texture_pac_1 = loadTexture("pakuman_1.bmp",ren);
-    SDL_Texture* texture_pac_2 = loadTexture("pakuman_2.bmp",ren);
-    SDL_Texture* texture_pac_3 = loadTexture("pakuman_3.bmp",ren);
+void aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10]){
+    char nom_doc[12];
     switch(dir){
         case 'h':
-            renderTexture(texture_pac_1,ren,e_x,e_y,pacsize,pacsize);
+            char pos= '1';
             break;
         case 'b':
-            renderTexture(texture_pac_3,ren,e_x,e_y,pacsize,pacsize);
+            char pos= '3';
             break;
         case 'g':
-            renderTexture(texture_pac_2,ren,e_x,e_y,pacsize,pacsize);
+            char pos= '2';
             break;
         case 'd':
-            renderTexture(texture_pac_0,ren,e_x,e_y,pacsize,pacsize);
+            char pos= '0';
+            break;
+        default :
+            break;
+    }
+    switch(ghost_name){
+        case "blinky":
+            char ghost_number= '1';
+            break;
+        case "pinky":
+            char ghost_number= '2';
+            break;
+        case 'inky':
+            char ghost_number= '3';
+            break;
+        case "clyde":
+            char ghost_number= '4';
             break;
         default :
             break;

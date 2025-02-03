@@ -2,6 +2,8 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 #include "ressources.h"
+
+
 struct plateauSt{
     int haut;
     int large;
