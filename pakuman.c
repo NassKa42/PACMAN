@@ -49,9 +49,9 @@ return pakuman;
 };
 
 
-int CollisionAvecFantome(Player pakuman, fantome ghost){
+// int CollisionAvecFantome(Player pakuman, fantome ghost){
 
-}
+// }
 // char regarderVers(){
 //     while (direction=' '){
 //         direction=processKeyboard();
