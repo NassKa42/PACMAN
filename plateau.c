@@ -88,8 +88,8 @@ int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée 
     for (int i = 0; i< map.large; i++){
         for (int j = 0; j< map.haut; j++){
             if (map.tab[i][j] == 1){
-                if (e_x > (j*taillecase) && e_x < (j+1)*taillecase){
-                    if (e_y > (i*taillecase) && e_y < (i+1)*taillecase){
+                if (e_x >= (j*taillecase) && e_x <= (j+1)*taillecase){
+                    if (e_y >= (i*taillecase) && e_y <= (i+1)*taillecase){
                         return 1;
                     } 
                 }
