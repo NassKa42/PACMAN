@@ -17,10 +17,10 @@ MAP :
 #include "pakuman.h"
 
 int main(int argc, char** argv){
-    fantome blinky = initFantome();
-    fantome inky = initFantome();
-    fantome pinky = initFantome();
-    fantome clide = initFantome();
+    fantome blinky = initFantome(10,10);
+    fantome inky = initFantome(9,9);
+    fantome pinky = initFantome(9,10);
+    fantome clide = initFantome(8,10);
     Player pacman = initPlayer("Perso1");
     char map[21][19]={
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'},
