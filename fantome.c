@@ -1,11 +1,12 @@
 #include "fantome.h"
 
-fantome initFantome(){
-    fantome name;
-    name.posX = 0;
-    name.posY = 0;
-    name.dir = 'h';
-    return name;
+fantome initFantome(int x, int y, char name[10]){
+    fantome ghost;
+    ghost.posX = x*taillecase;
+    ghost.posY = y*taillecase;
+    ghost.dir = 'h';
+    strcpy(ghost.name , name);
+    return ghost;
 };
 
 
@@ -138,7 +139,7 @@ fantome deplacement_fantome_rng2222(fantome ghost,plateau map){ //CHANGER LE NOM
 
 
 void caracfantome(fantome ghost){
-    printf("se situe en X = %d, Y = %d, direction = %c\n", ghost.posX, ghost.posY, ghost.dir);
+    printf("%s se situe en X = %d, Y = %d, direction = %c\n",ghost.name, ghost.posX, ghost.posY, ghost.dir);
 };
 
 
@@ -173,3 +174,4 @@ fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map){
         return deplacement_fantome_rng(ghost, map);
     }
     };
+
