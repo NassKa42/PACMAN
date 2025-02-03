@@ -14,12 +14,13 @@
 //9: rose
 
 #ifndef PatoisDuNord
-#define PatoisDunord
+#define PatoisDuNord
 
 struct PlayerStruct{char name; int x; int y; int orientation; int score;};
 typedef struct PlayerStruct Player;
 Player initPlayer(char* name);
 int bouger(char direction, Player pakuman);
 Player bougerdirect(char direction, Player pakuman);
+Player BougerAvecTest(Player pakuman,char direction);
 
 #endif
