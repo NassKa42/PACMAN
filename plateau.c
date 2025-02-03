@@ -49,8 +49,8 @@ void graphPlateau(SDL_Renderer* ren,plateau plat){
     SDL_Texture* wall = loadTexture("wall.bmp",ren);
     SDL_Texture* biggum = loadTexture("bigGum.bmp",ren);
     SDL_Texture* cerise = loadTexture("cherry.bmp",ren);
-    SDL_Texture* pacman_d = loadTexture("pakuman_0.bmp",ren);
-    SDL_Texture* pacman_h = loadTexture("pakuman_1.bmp",ren);
+    // SDL_Texture* pacman_d = loadTexture("pakuman_0.bmp",ren);
+    // SDL_Texture* pacman_h = loadTexture("pakuman_1.bmp",ren);
     
     for ( int i = 0; i<plat.haut; i++){
         for ( int j = 0; j<plat.large; j++){
@@ -70,9 +70,9 @@ void graphPlateau(SDL_Renderer* ren,plateau plat){
                 case 4:
                     renderTexture(cerise,ren,j*30,i*30,30,30);
                     break;
-                case 5:
-                    renderTexture(pacman_d,ren,j*30,i*30,30,30);
-                    break;
+                // case 5:
+                //     renderTexture(pacman_d,ren,j*30,i*30,30,30);
+                //     break;
                 default:
                     break;
                 }
@@ -84,3 +84,17 @@ void graphPlateau(SDL_Renderer* ren,plateau plat){
     SDL_Delay(3000);
 }
 
+int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée to block
+    for (int i = 0; i< map.large; i++){
+        for (int j = 0; j< map.haut; j++){
+            if (map.tab[i][j] == 1){
+                if (e_x > (j*taillecase) && e_x < (j+1)*taillecase){
+                    if (e_y > (i*taillecase) && e_y < (i+1)*taillecase){
+                        return 1;
+                    } 
+                }
+            }
+        }
+    }
+    return 0;
+}
