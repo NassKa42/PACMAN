@@ -80,6 +80,10 @@ int main(int argc, char** argv){
     char secondaire;
     int compteurframes=0;
     int etapeanimation=0;
+    int big_gum_on =0;
+    int debut_gum = 0;
+    int duree_gum = 500;
+    int score;
     while (lives >0){
         dir = start(t, ren, font, Red, gum, wall, biggum, cerise);
         while (finitopipo ==1 && hurt == 0){   
@@ -98,8 +102,7 @@ int main(int argc, char** argv){
                     secondaire=' ';
                 };
             };
-            if(compteurframes==10){
-                compteurframes=0;
+            if(compteurframes%10 == 0){
                 switch(etapeanimation){
                     case 0:
                         etapeanimation=2;
@@ -117,7 +120,12 @@ int main(int argc, char** argv){
             pacman = BougerAvecTest(pacman, dir, t);
             blinky = deplacement_fantome_proche(pacman, blinky, t);
             SDL_RenderClear(ren);
-            pacman.score = pacman.score + score_gum(pacman, t);
+            score = score_gum(pacman, t);
+            if (score == 50){
+                big_gum_on = 1;
+                debut_gum = compteurframes;
+            }
+            pacman.score = pacman.score + score;
             t = remove_gum(pacman.x,pacman.y,t);
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
             ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3,texture_pac_5,etapeanimation);
@@ -130,12 +138,21 @@ int main(int argc, char** argv){
             sprintf(text,"Score : %d",pacman.score);
             printText(0,9 * taillecase,text,4* taillecase,2 * taillecase,font,White,ren);
             if (is_collision_p2g(blinky, pacman) == 1){
-                lives --;
-                hurt = 1;
+                
+                if (big_gum_on == 0){
+                    hurt = 1;
+                    lives --;
+                }
+                
             }
             updateDisplay(ren);
             if (pacman.score == 100 * niv){
                 finitopipo = 0;
+            }
+            if (compteurframes - duree_gum > debut_gum){
+                big_gum_on = 0; //fin big gum
+            } else {
+                break; // big gum
             }
             SDL_Delay(16- niv);
         }
