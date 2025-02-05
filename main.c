@@ -63,6 +63,7 @@ int main(int argc, char** argv){
     SDL_Texture* texture_pac_2 = loadTexture("pakuman_2.bmp",ren);
     SDL_Texture* texture_pac_3 = loadTexture("pakuman_3.bmp",ren);
     SDL_Texture* texture_pac_5 = loadTexture("pakuman_5.bmp",ren);
+    SDL_Texture* texture_pac_transparent = loadTexture("pakuman_transparent.bmp",ren);
     SDL_Texture* gum = loadTexture("gum.bmp",ren);
     SDL_Texture* wall = loadTexture("wall.bmp",ren);
     SDL_Texture* biggum = loadTexture("bigGum.bmp",ren);
@@ -85,6 +86,7 @@ int main(int argc, char** argv){
     int duree_gum = 500;
     int score;
     while (lives >0){
+        big_gum_on = 0
         dir = start(t, ren, font, Red, gum, wall, biggum, cerise);
         while (finitopipo ==1 && hurt == 0){   
             tempo = processKeyboard();
@@ -133,7 +135,7 @@ int main(int argc, char** argv){
             ren = aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
             ren = aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
             ren = aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
-            ren = aff_vies(lives ,ren);
+            ren = aff_vies(lives ,ren,texture_pac_transparent);
             char text[16];
             sprintf(text,"Score : %d",pacman.score);
             printText(0,9 * taillecase,text,4* taillecase,2 * taillecase,font,White,ren);
@@ -155,7 +157,7 @@ int main(int argc, char** argv){
             SDL_Delay(16- niv);
         }
         if (hurt == 1){
-            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_0,texture_pac_5);
+            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_0,texture_pac_5,texture_pac_transparent);
             hurt = 0;
         } else if (finitopipo == 0){
             finitopipo = 1;

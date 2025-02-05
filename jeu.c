@@ -15,17 +15,17 @@ char start(plateau t, SDL_Renderer* ren, TTF_Font* font, SDL_Color Red,SDL_Textu
     return c;
 }
 
-void perte_vie(SDL_Renderer* ren, int lives, Player pacman, plateau t,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise, SDL_Texture* ouvert, SDL_Texture* ferme){
+void perte_vie(SDL_Renderer* ren, int lives, Player pacman, plateau t,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise, SDL_Texture* ouvert, SDL_Texture* ferme, SDL_Texture* texture_pac_transparent){
     for (int i = 0; i<2; i++){
         SDL_RenderClear(ren);
         ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
-        ren = aff_vies(lives +1 ,ren);
+        ren = aff_vies(lives +1 ,ren,texture_pac_transparent);
         renderTexture(ouvert,ren,pacman.x,pacman.y,pacsize,pacsize);
         updateDisplay(ren);
         SDL_Delay(500);
         SDL_RenderClear(ren);
         ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
-        ren = aff_vies(lives ,ren);
+        ren = aff_vies(lives ,ren,texture_pac_transparent);
         renderTexture(ferme,ren,pacman.x,pacman.y,pacsize,pacsize);
         updateDisplay(ren);
         SDL_Delay(500);

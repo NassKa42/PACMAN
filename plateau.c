@@ -265,8 +265,7 @@ SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char gh
     return ren;
 }
 
-SDL_Renderer* aff_vies(int lives, SDL_Renderer* ren){
-    SDL_Texture* vie = loadTexture("pakuman_0.bmp",ren);
+SDL_Renderer* aff_vies(int lives, SDL_Renderer* ren,SDL_Texture* vie){
     for (int i = 0; i< lives; i++){
         renderTexture(vie,ren,i * taillecase,12 * taillecase,taillecase,taillecase);
     }
