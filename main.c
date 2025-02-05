@@ -47,7 +47,7 @@ int main(int argc, char** argv){
 
     fantome inky = initFantome(10,10, "inky");
     fantome blinky = initFantome(6,12, "blinky");
-    fantome pinky = initFantome(9,10, "pinky");
+    fantome pinky = initFantome(6,10, "pinky"); //9 10
     fantome clyde = initFantome(8,10, "clyde");
     Player pacman = initPlayer("Perso1");
     plateau t = initPlateau(map);
@@ -99,15 +99,16 @@ int main(int argc, char** argv){
             // printf("%d \n", PeutBouger(dir, pacman, t));
             pacman = BougerAvecTest(pacman, dir, t);
             blinky = deplacement_fantome_proche(pacman, blinky, t);
+            pinky = deplacement_fantome_proche_continue(pacman, pinky, t);
             SDL_RenderClear(ren);
             pacman.score = pacman.score + score_gum(pacman, t);
             t = remove_gum(pacman.x,pacman.y,t);
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
             ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3);
             ren = aff_fantome(blinky.posX,blinky.posY,ren,blinky.dir,blinky.name);
-            ren = aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
-            ren = aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
-            ren = aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
+            ren = aff_fantome(inky.posX,inky.posY,ren,inky.dir,inky.name);
+            ren = aff_fantome(pinky.posX,pinky.posY,ren,pinky.dir,pinky.name);
+            ren = aff_fantome(clyde.posX,clyde.posY,ren,clyde.dir,clyde.name);
             ren = aff_vies(lives ,ren);
             char text[16];
             sprintf(text,"Score : %d",pacman.score);

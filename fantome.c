@@ -20,7 +20,29 @@ void caracfantome(fantome ghost){
     printf("%s se situe en X = %d, Y = %d, direction = %c\n",ghost.name, ghost.posX, ghost.posY, ghost.dir);
 };
 
+int fantome_peut_avancer(fantome ghost, plateau map){//1 == peut avancer
 
+    switch (ghost.dir)
+    {
+    case 'h':
+        return !is_collision_e2b(ghost.posX, ghost.posY - 1, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY - 1, map);
+        break;
+    
+    case 'b':
+        return !is_collision_e2b(ghost.posX, ghost.posY + ghostsize, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY + ghostsize, map);
+        break;
+    case 'g':
+        return !is_collision_e2b(ghost.posX - 1, ghost.posY, map) && !is_collision_e2b(ghost.posX - 1, ghost.posY + ghostsize - 1, map);
+        break;
+    case 'd':
+        return !is_collision_e2b(ghost.posX + ghostsize, ghost.posY, map) && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY + ghostsize - 1, map);
+        break;        
+    default:
+        break;
+    }
+
+    return 0 ;
+}
 
 fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map) {
     int bouge = 0; 
@@ -48,6 +70,36 @@ fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map) {
     return ghost;
 }
 
+fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, plateau map){
+    int bouge = 0;
+    if (fantome_peut_avancer(ghost, map) == 1)
+    {
+        if (ghost.dir == 'h')
+        {
+            ghost.posY --;
+        }else if (ghost.dir == 'b')
+        {
+            ghost.posY ++;
+        }else if (ghost.dir == 'g')
+        {
+            ghost.posX --  ; 
+        }else
+        {
+            ghost.posX ++;
+        }
+        
+        
+        
+        
+    }else
+    {
+            ghost = deplacement_fantome_proche(pacman, ghost, map);
+    }
+    
+    
+    
+    return ghost;
+}
 
 
 fantome deplacement_fantome_rng(fantome ghost,plateau map){
