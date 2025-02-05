@@ -151,8 +151,6 @@ int main(int argc, char** argv){
             }
             if (compteurframes - duree_gum > debut_gum){
                 big_gum_on = 0; //fin big gum
-            } else {
-                break; // big gum
             }
             SDL_Delay(16- niv);
         }
