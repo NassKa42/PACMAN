@@ -15,6 +15,41 @@ fantome reset_fantome(fantome ghost,int x,int y){
     return ghost;
 }
 
+
+void caracfantome(fantome ghost){
+    printf("%s se situe en X = %d, Y = %d, direction = %c\n",ghost.name, ghost.posX, ghost.posY, ghost.dir);
+};
+
+
+
+fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map) {
+    int bouge = 0; 
+    if (ghost.posX < pacman.x && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY, map) && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY + ghostsize - 1, map)) {
+        ghost.posX++;
+        ghost.dir = 'd';
+        bouge = 1;
+    } 
+    if (!bouge && ghost.posX > pacman.x &&  !is_collision_e2b(ghost.posX - 1, ghost.posY, map) && !is_collision_e2b(ghost.posX - 1, ghost.posY + ghostsize - 1, map)) {
+        ghost.posX--;
+        ghost.dir = 'g';
+        bouge = 1;
+    } 
+    if (!bouge && ghost.posY < pacman.y &&  !is_collision_e2b(ghost.posX, ghost.posY + ghostsize, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY + ghostsize, map)) {
+        ghost.posY++;
+        ghost.dir = 'b';
+        bouge = 1;
+    } 
+    if (!bouge && ghost.posY > pacman.y &&  !is_collision_e2b(ghost.posX, ghost.posY - 1, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY - 1, map)) {
+        ghost.posY--;
+        ghost.dir = 'h';
+        bouge = 1;
+    }
+
+    return ghost;
+}
+
+
+
 fantome deplacement_fantome_rng(fantome ghost,plateau map){
     int collision = 0;
     int deplace = rand()%2;
@@ -142,38 +177,6 @@ fantome deplacement_fantome_rng2222(fantome ghost,plateau map){ //CHANGER LE NOM
 
 };
 
-
-void caracfantome(fantome ghost){
-    printf("%s se situe en X = %d, Y = %d, direction = %c\n",ghost.name, ghost.posX, ghost.posY, ghost.dir);
-};
-
-
-
-fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map) {
-    int bouge = 0; 
-    if (ghost.posX < pacman.x && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY, map) && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY + ghostsize - 1, map)) {
-        ghost.posX++;
-        ghost.dir = 'd';
-        bouge = 1;
-    } 
-    if (!bouge && ghost.posX > pacman.x &&  !is_collision_e2b(ghost.posX - 1, ghost.posY, map) && !is_collision_e2b(ghost.posX - 1, ghost.posY + ghostsize - 1, map)) {
-        ghost.posX--;
-        ghost.dir = 'g';
-        bouge = 1;
-    } 
-    if (!bouge && ghost.posY < pacman.y &&  !is_collision_e2b(ghost.posX, ghost.posY + ghostsize, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY + ghostsize, map)) {
-        ghost.posY++;
-        ghost.dir = 'b';
-        bouge = 1;
-    } 
-    if (!bouge && ghost.posY > pacman.y &&  !is_collision_e2b(ghost.posX, ghost.posY - 1, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY - 1, map)) {
-        ghost.posY--;
-        ghost.dir = 'h';
-        bouge = 1;
-    }
-
-    return ghost;
-}
 
 
 
