@@ -128,24 +128,32 @@ plateau remove_gum(int e_x, int e_y, plateau map){
     return map;
 }
 
-SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir,SDL_Texture* texture_pac_0,SDL_Texture* texture_pac_1,SDL_Texture* texture_pac_2,SDL_Texture* texture_pac_3){
-    
-    switch(dir){
-        case 'h':
-            renderTexture(texture_pac_1,ren,e_x,e_y,pacsize,pacsize);
+SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir,SDL_Texture* texture_pac_0,SDL_Texture* texture_pac_1,SDL_Texture* texture_pac_2,SDL_Texture* texture_pac_3, SDL_Texture* texture_pac_5, int animation){
+    switch(animation){
+        case 2:
+            switch(dir){
+                case 'h':
+                    renderTexture(texture_pac_1,ren,e_x,e_y,pacsize,pacsize);
+                    break;
+                case 'b':
+                    renderTexture(texture_pac_3,ren,e_x,e_y,pacsize,pacsize);
+                    break;
+                case 'g':
+                    renderTexture(texture_pac_2,ren,e_x,e_y,pacsize,pacsize);
+                    break;
+                case 'd':
+                    renderTexture(texture_pac_0,ren,e_x,e_y,pacsize,pacsize);
+                    break;
+                default :
+                    break;
+            };
             break;
-        case 'b':
-            renderTexture(texture_pac_3,ren,e_x,e_y,pacsize,pacsize);
+        case 0:
+            renderTexture(texture_pac_5,ren,e_x,e_y,pacsize,pacsize);
             break;
-        case 'g':
-            renderTexture(texture_pac_2,ren,e_x,e_y,pacsize,pacsize);
+        default:
             break;
-        case 'd':
-            renderTexture(texture_pac_0,ren,e_x,e_y,pacsize,pacsize);
-            break;
-        default :
-            break;
-    }
+    };
     return ren;
 }
 

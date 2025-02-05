@@ -78,6 +78,8 @@ int main(int argc, char** argv){
     char tempo;
     int niv = 1;
     char secondaire;
+    int compteurframes=0;
+    int etapeanimation=0;
     while (lives >0){
         dir = start(t, ren, font, Red, gum, wall, biggum, cerise);
         while (finitopipo ==1 && hurt == 0){   
@@ -96,6 +98,21 @@ int main(int argc, char** argv){
                     secondaire=' ';
                 };
             };
+            if(compteurframes==10){
+                compteurframes=0;
+                switch(etapeanimation){
+                    case 0:
+                        etapeanimation=2;
+                        break;
+                    case 2:
+                        etapeanimation=0;
+                        break;
+                    default:
+                        break;
+                };
+            };
+            compteurframes++;
+
             // printf("%d \n", PeutBouger(dir, pacman, t));
             pacman = BougerAvecTest(pacman, dir, t);
             blinky = deplacement_fantome_proche(pacman, blinky, t);
@@ -103,8 +120,8 @@ int main(int argc, char** argv){
             pacman.score = pacman.score + score_gum(pacman, t);
             t = remove_gum(pacman.x,pacman.y,t);
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
-            ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3);
-            ren = aff_fantome(blinky.posX,blinky.posY,ren,blinky.dir,blinky.name);
+            ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3,texture_pac_5,etapeanimation);
+            ren = aff_fantome(blinky.posX,blinky.posY,ren,dir,blinky.name);
             ren = aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
             ren = aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
             ren = aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
@@ -123,12 +140,12 @@ int main(int argc, char** argv){
             SDL_Delay(16- niv);
         }
         if (hurt == 1){
-            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise, texture_pac_0, texture_pac_5);
+            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_0,texture_pac_5);
             hurt = 0;
         } else if (finitopipo == 0){
             finitopipo = 1;
             niv ++;
-            niveau_gagne(ren,pacman.score,pacman,t, font, White, gum, wall, biggum, cerise, texture_pac_0 , texture_pac_2);
+            niveau_gagne(ren,pacman.score,pacman,t, font, White, gum, wall, biggum, cerise,texture_pac_0,texture_pac_2);
             t = initPlateau(map);
             SDL_RenderClear(ren);
             
