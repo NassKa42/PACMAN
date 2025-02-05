@@ -9,6 +9,11 @@ fantome initFantome(int x, int y, char name[10]){
     return ghost;
 };
 
+fantome reset_fantome(fantome ghost,int x,int y){
+    ghost.posX = x *taillecase;
+    ghost.posY = y *taillecase;
+    return ghost;
+}
 
 fantome deplacement_fantome_rng(fantome ghost,plateau map){
     int collision = 0;
@@ -269,6 +274,8 @@ int is_collision_p2g(fantome ghost, Player pacman){
         return 0;
     }
 }
+
+
 
 /*
 GO droite

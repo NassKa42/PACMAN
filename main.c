@@ -18,7 +18,6 @@ MAP :
 #include "jeu.h"
 
 int main(int argc, char** argv){
-    int score = 0;  
     // caracfantome(inky);
     // caracfantome(blinky);
     // caracfantome(pinky);
@@ -100,7 +99,7 @@ int main(int argc, char** argv){
             pacman = BougerAvecTest(pacman, dir, t);
             blinky = deplacement_fantome_proche(pacman, blinky, t);
             SDL_RenderClear(ren);
-            score = score + score_gum(pacman, t);
+            pacman.score = pacman.score + score_gum(pacman, t);
             t = remove_gum(pacman.x,pacman.y,t);
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
             ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3);
@@ -110,14 +109,14 @@ int main(int argc, char** argv){
             ren = aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
             ren = aff_vies(lives ,ren);
             char text[16];
-            sprintf(text,"Score : %d",score);
+            sprintf(text,"Score : %d",pacman.score);
             printText(0,9 * taillecase,text,4* taillecase,2 * taillecase,font,White,ren);
             if (is_collision_p2g(blinky, pacman) == 1){
                 lives --;
                 hurt = 1;
             }
             updateDisplay(ren);
-            if (score == 100 * niv){
+            if (pacman.score == 100 * niv){
                 finitopipo = 0;
             }
             SDL_Delay(16- niv);
@@ -128,18 +127,18 @@ int main(int argc, char** argv){
         } else if (finitopipo == 0){
             finitopipo = 1;
             niv ++;
-            niveau_gagne(ren,score,pacman,t, font, White, gum, wall, biggum, cerise);
+            niveau_gagne(ren,pacman.score,pacman,t, font, White, gum, wall, biggum, cerise);
             t = initPlateau(map);
             SDL_RenderClear(ren);
             
         }
-        inky = initFantome(10,10, "inky");
-        blinky = initFantome(6,12, "blinky");
-        pinky = initFantome(9,10, "pinky");
-        clyde = initFantome(8,10, "clyde");
-        pacman = initPlayer("Perso1");
+        inky = reset_fantome(inky,10,10);
+        blinky = reset_fantome(blinky,6,12);
+        pinky = reset_fantome(pinky,9,10);
+        clyde = reset_fantome(clyde,8,10);
+        pacman = reset_player(pacman);
     }
-    perte_partie(ren, score, t, font, White, Red, gum, wall, biggum, cerise);
+    perte_partie(ren, pacman.score, t, font, White, Red, gum, wall, biggum, cerise);
     SDL_Delay(1000);
     QuitSDL(win, ren);
     return 0;

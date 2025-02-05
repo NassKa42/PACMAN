@@ -15,7 +15,7 @@ struct StructFant
 
 typedef struct StructFant fantome;
 fantome initFantome(int x, int y, char name[10]);
-
+fantome reset_fantome(fantome ghost,int x,int y);
 fantome deplacement_fantome_rng(fantome ghost,plateau map);
 void caracfantome(fantome ghost);
 fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map);

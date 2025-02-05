@@ -101,7 +101,7 @@ int is_collision_e2b(int e_x, int e_y, plateau map) {
 
     return 0; // Pas de collision
 }
-int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision entitée to block
+int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision pacman to gum/ megam gum / cherry
     if (map.tab[e_y/taillecase][e_x/taillecase]==2)
     {
         return 1;
