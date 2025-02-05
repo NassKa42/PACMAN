@@ -19,6 +19,7 @@
 struct PlayerStruct{char name; int x; int y; char orientation; int score;};
 typedef struct PlayerStruct Player;
 Player initPlayer(char* name);
+Player reset_player(Player pacman);
 int bouger(char direction, Player pakuman);
 Player bougerdirect(char direction, Player pakuman);
 Player BougerAvecTest(Player pakuman,char direction,plateau tableau);

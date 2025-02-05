@@ -44,14 +44,7 @@ int affichePlateau(plateau t){
 }
 
 
-SDL_Renderer* graphPlateau(SDL_Renderer* ren,plateau plat){
-    SDL_Texture* gum = loadTexture("gum.bmp",ren);
-    SDL_Texture* wall = loadTexture("wall.bmp",ren);
-    SDL_Texture* biggum = loadTexture("bigGum.bmp",ren);
-    SDL_Texture* cerise = loadTexture("cherry.bmp",ren);
-    // SDL_Texture* pacman_d = loadTexture("pakuman_0.bmp",ren);
-    // SDL_Texture* pacman_h = loadTexture("pakuman_1.bmp",ren);
-    
+SDL_Renderer* graphPlateau(SDL_Renderer* ren,plateau plat,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise){    
     for ( int i = 0; i<plat.haut; i++){
         for ( int j = 0; j<plat.large; j++){
             switch(plat.tab[i][j]){
@@ -108,7 +101,7 @@ int is_collision_e2b(int e_x, int e_y, plateau map) {
 
     return 0; // Pas de collision
 }
-int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision entitée to block
+int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision pacman to gum/ megam gum / cherry
     if (map.tab[e_y/taillecase][e_x/taillecase]==2)
     {
         return 1;
@@ -135,11 +128,8 @@ plateau remove_gum(int e_x, int e_y, plateau map){
     return map;
 }
 
-SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir){
-    SDL_Texture* texture_pac_0 = loadTexture("pakuman_0.bmp",ren);
-    SDL_Texture* texture_pac_1 = loadTexture("pakuman_1.bmp",ren);
-    SDL_Texture* texture_pac_2 = loadTexture("pakuman_2.bmp",ren);
-    SDL_Texture* texture_pac_3 = loadTexture("pakuman_3.bmp",ren);
+SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir,SDL_Texture* texture_pac_0,SDL_Texture* texture_pac_1,SDL_Texture* texture_pac_2,SDL_Texture* texture_pac_3){
+    
     switch(dir){
         case 'h':
             renderTexture(texture_pac_1,ren,e_x,e_y,pacsize,pacsize);
@@ -267,3 +257,10 @@ SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char gh
     return ren;
 }
 
+SDL_Renderer* aff_vies(int lives, SDL_Renderer* ren){
+    SDL_Texture* vie = loadTexture("pakuman_0.bmp",ren);
+    for (int i = 0; i< lives; i++){
+        renderTexture(vie,ren,i * taillecase,11 * taillecase,taillecase,taillecase);
+    }
+    return ren;
+}

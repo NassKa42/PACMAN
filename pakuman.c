@@ -15,6 +15,12 @@ Player initPlayer(char* name){
     personnage.score = 0;
     return personnage;
 };
+Player reset_player(Player pacman){
+    pacman.x = start_x * taillecase;
+    pacman.y = start_y * taillecase;
+    return pacman;
+}
+
 
 Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
     int PosTableauX=pakuman.x/taillecase;

@@ -9,6 +9,11 @@ fantome initFantome(int x, int y, char name[10]){
     return ghost;
 };
 
+fantome reset_fantome(fantome ghost,int x,int y){
+    ghost.posX = x *taillecase;
+    ghost.posY = y *taillecase;
+    return ghost;
+}
 
 fantome deplacement_fantome_rng(fantome ghost,plateau map){
     int collision = 0;
@@ -213,6 +218,30 @@ fantome deplacement_fantome_proche2(Player pacman, fantome ghost, plateau map){
         
     }
     };
+
+int is_collision_p2g(fantome ghost, Player pacman){
+    if (pacman.x >= ghost.posX && pacman.x <= ghost.posX + ghostsize){
+        if (pacman.y >= ghost.posY && pacman.y <= ghost.posY + ghostsize){
+            return 1; // collision
+        } else if (pacman.y + pacsize >= ghost.posY && pacman.y + pacsize <= ghost.posY + ghostsize){
+            return 1;
+        } else {
+            return 0;
+        }
+    } else if (pacman.x + pacsize >= ghost.posX && pacman.x + pacsize <= ghost.posX + ghostsize){
+        if (pacman.y >= ghost.posY && pacman.y <= ghost.posY + ghostsize){
+            return 1; // collision
+        } else if (pacman.y + pacsize >= ghost.posY && pacman.y + pacsize <= ghost.posY + ghostsize){
+            return 1;
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
+}
+
+
 
 /*
 GO droite

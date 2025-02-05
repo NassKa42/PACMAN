@@ -18,93 +18,130 @@ MAP :
 #include "jeu.h"
 
 int main(int argc, char** argv){
-    int score = 0;
+    // caracfantome(inky);
+    // caracfantome(blinky);
+    // caracfantome(pinky);
+    // caracfantome(clyde);
+    char map[21][19]={
+{'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'},
+{'w','v','v','v','v','v','v','v','v','w','v','v','v','v','v','v','v','v','w'},
+{'w','v','w','w','v','w','w','w','v','w','v','w','w','w','v','w','w','v','w'},
+{'w','v','w','w','v','w','w','w','v','w','v','w','w','w','v','w','w','v','w'},
+{'w','v','v','v','v','v','v','v','v','v','v','v','v','v','v','v','v','v','w'},
+{'w','v','w','w','v','w','v','w','w','w','w','w','v','w','v','w','w','v','w'},
+{'w','v','v','v','v','w','v','v','v','w','v','v','v','w','v','v','v','v','w'},
+{'w','w','w','w','v','w','w','w','v','w','v','w','w','w','v','w','w','w','w'},
+{'w','w','w','w','v','w','v','v','v','v','v','v','v','w','v','w','w','w','w'},
+{'w','w','w','w','v','w','v','w','w','v','w','w','v','w','v','w','w','w','w'},
+{'w','w','w','w','v','v','v','w','v','v','v','w','v','v','v','w','w','w','w'},
+{'w','w','w','w','v','w','v','w','w','w','w','w','v','w','v','w','w','w','w'},
+{'w','w','w','w','v','w','v','v','v','v','v','v','v','w','v','w','w','w','w'},
+{'w','w','w','w','v','w','w','w','v','w','v','w','w','w','v','w','w','w','w'},
+{'w','v','v','v','v','w','v','v','v','w','v','v','v','w','v','v','v','v','w'},
+{'w','v','w','w','v','w','v','w','w','w','w','w','v','w','v','w','w','v','w'},
+{'w','v','v','v','v','v','v','v','v','v','v','v','v','v','v','v','v','v','w'},
+{'w','v','w','w','v','w','w','w','v','w','v','w','w','w','v','w','w','m','w'},
+{'w','v','w','w','v','w','w','w','v','w','v','w','w','w','v','w','w','v','w'},
+{'w','v','v','v','v','v','v','v','v','w','v','v','v','g','g','g','g','g','w'},
+{'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'}};
+
     fantome inky = initFantome(10,10, "inky");
     fantome blinky = initFantome(6,12, "blinky");
     fantome pinky = initFantome(9,10, "pinky");
     fantome clyde = initFantome(8,10, "clyde");
-    caracfantome(inky);
-    caracfantome(blinky);
-    caracfantome(pinky);
-    caracfantome(clyde);
     Player pacman = initPlayer("Perso1");
-    char map[21][19]={
-{'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'},
-{'w','g','g','g','g','g','g','g','g','w','g','g','g','g','g','g','g','g','w'},
-{'w','g','w','w','g','w','w','w','g','w','g','w','w','w','g','w','w','g','w'},
-{'w','m','w','w','g','w','w','w','g','w','g','w','w','w','g','w','w','m','w'},
-{'w','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','w'},
-{'w','g','w','w','g','w','g','w','w','w','w','w','g','w','g','w','w','g','w'},
-{'w','g','g','g','g','w','m','g','g','w','g','g','m','w','g','g','g','g','w'},
-{'w','w','w','w','g','w','w','w','g','w','g','w','w','w','g','w','w','w','w'},
-{'w','w','w','w','g','w','v','v','v','v','v','v','v','w','g','w','w','w','w'},
-{'w','w','w','w','g','w','v','w','w','v','w','w','v','w','g','w','w','w','w'},
-{'w','w','w','w','g','g','v','w','v','v','v','w','v','g','g','w','w','w','w'},
-{'w','w','w','w','g','w','v','w','w','w','w','w','v','w','g','w','w','w','w'},
-{'w','w','w','w','g','w','v','v','v','v','v','v','v','w','g','w','w','w','w'},
-{'w','w','w','w','g','w','w','w','g','w','g','w','w','w','g','w','w','w','w'},
-{'w','g','g','g','g','w','m','g','g','w','g','g','m','w','g','g','g','g','w'},
-{'w','g','w','w','g','w','g','w','w','w','w','w','g','w','g','w','w','g','w'},
-{'w','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','g','w'},
-{'w','m','w','w','g','w','w','w','g','w','g','w','w','w','g','w','w','m','w'},
-{'w','g','w','w','g','w','w','w','g','w','g','w','w','w','g','w','w','g','w'},
-{'w','g','g','g','g','g','g','g','g','w','g','g','g','g','g','g','g','g','w'},
-{'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'}};
-
-
     plateau t = initPlateau(map);
     //t.tab[start_y][start_x] = 4;
     initSDL();
     initTTF();
+    SDL_Color Red ={255,0,0,0};
+    SDL_Color White ={255,255,255,0};
     SDL_Window * win = SDL_CreateWindow("My video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 19*30, 21*30, SDL_WINDOW_RESIZABLE);
     SDL_Renderer * ren = createRenderer(win);
+    SDL_Texture* texture_pac_0 = loadTexture("pakuman_0.bmp",ren);
+    SDL_Texture* texture_pac_1 = loadTexture("pakuman_1.bmp",ren);
+    SDL_Texture* texture_pac_2 = loadTexture("pakuman_2.bmp",ren);
+    SDL_Texture* texture_pac_3 = loadTexture("pakuman_3.bmp",ren);
+    SDL_Texture* gum = loadTexture("gum.bmp",ren);
+    SDL_Texture* wall = loadTexture("wall.bmp",ren);
+    SDL_Texture* biggum = loadTexture("bigGum.bmp",ren);
+    SDL_Texture* cerise = loadTexture("cherry.bmp",ren);
     SDL_Color Black ={0,0,0,0};
     TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
-    graphPlateau(ren,t);
+    graphPlateau(ren,t, gum, wall, biggum, cerise);
     updateDisplay(ren);
-
+    int lives = 3;
     int finitopipo = 1;
+    int hurt = 0;
     char dir;
-    dir = start(t, ren);
     char tempo;
+    int niv = 1;
     char secondaire;
-    while (finitopipo ==1)
-    {   
-        tempo = processKeyboard();
-        if (tempo != ' ') {
-            if (PeutBouger(tempo, pacman, t)==1){
-                dir=tempo;
+    while (lives >0){
+        dir = start(t, ren, font, Red, gum, wall, biggum, cerise);
+        while (finitopipo ==1 && hurt == 0){   
+            tempo = processKeyboard();
+            if (tempo != ' ') {
+                if (PeutBouger(tempo, pacman, t)==1){
+                    dir=tempo;
+                }
+                else {
+                    secondaire=tempo;
+                };
             }
-            else {
-                secondaire=tempo;
+            else{
+                if(secondaire != ' ' && PeutBouger(secondaire, pacman, t)==1){
+                    dir = secondaire;
+                    secondaire=' ';
+                };
             };
+            // printf("%d \n", PeutBouger(dir, pacman, t));
+            pacman = BougerAvecTest(pacman, dir, t);
+            blinky = deplacement_fantome_proche(pacman, blinky, t);
+            SDL_RenderClear(ren);
+            pacman.score = pacman.score + score_gum(pacman, t);
+            t = remove_gum(pacman.x,pacman.y,t);
+            ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+            ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3);
+            ren = aff_fantome(blinky.posX,blinky.posY,ren,dir,blinky.name);
+            ren = aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
+            ren = aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
+            ren = aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
+            ren = aff_vies(lives ,ren);
+            char text[16];
+            sprintf(text,"Score : %d",pacman.score);
+            printText(0,9 * taillecase,text,4* taillecase,2 * taillecase,font,White,ren);
+            if (is_collision_p2g(blinky, pacman) == 1){
+                lives --;
+                hurt = 1;
+            }
+            updateDisplay(ren);
+            if (pacman.score == 100 * niv){
+                finitopipo = 0;
+            }
+            SDL_Delay(16- niv);
         }
-        else{
-            if(secondaire != ' ' && PeutBouger(secondaire, pacman, t)==1){
-                dir = secondaire;
-                secondaire=' ';
-            };
-        };
-        // printf("%d \n", PeutBouger(dir, pacman, t));
-        pacman = BougerAvecTest(pacman, dir, t);
-        blinky = deplacement_fantome_proche(pacman, blinky, t);
-        SDL_RenderClear(ren);
-        score = score + score_gum(pacman, t);
-        t = remove_gum(pacman.x,pacman.y,t);
-        ren = graphPlateau(ren, t);
-        ren = aff_pac(pacman.x, pacman.y, ren, dir);
-        ren = aff_fantome(blinky.posX,blinky.posY,ren,dir,blinky.name);
-        ren = aff_fantome(inky.posX,inky.posY,ren,dir,inky.name);
-        ren = aff_fantome(pinky.posX,pinky.posY,ren,dir,pinky.name);
-        ren = aff_fantome(clyde.posX,clyde.posY,ren,dir,clyde.name);
-        // char text[14] = sprintf("Score : %d",score);
-        // printText(0,0,text,60,30,font,Black,ren);
-        //printf("%c , %d \n",dir, score);
-        updateDisplay(ren);
-        if (score == 1820){
-            finitopipo = 0;
+        if (hurt == 1){
+            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise);
+            hurt = 0;
+        } else if (finitopipo == 0){
+            finitopipo = 1;
+            niv ++;
+            niveau_gagne(ren,pacman.score,pacman,t, font, White, gum, wall, biggum, cerise);
+            t = initPlateau(map);
+            SDL_RenderClear(ren);
+            
         }
+<<<<<<< HEAD
+=======
+        inky = reset_fantome(inky,10,10);
+        blinky = reset_fantome(blinky,6,12);
+        pinky = reset_fantome(pinky,9,10);
+        clyde = reset_fantome(clyde,8,10);
+        pacman = reset_player(pacman);
+>>>>>>> 2927e89c9b2c9fa65eb2bc8940ede11f1dd4cea7
     }
+    perte_partie(ren, pacman.score, t, font, White, Red, gum, wall, biggum, cerise);
     SDL_Delay(1000);
     QuitSDL(win, ren);
     return 0;
