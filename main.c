@@ -132,6 +132,11 @@ int main(int argc, char** argv){
             SDL_RenderClear(ren);
             
         }
+        inky = reset_fantome(inky,10,10);
+        blinky = reset_fantome(blinky,6,12);
+        pinky = reset_fantome(pinky,9,10);
+        clyde = reset_fantome(clyde,8,10);
+        pacman = reset_player(pacman);
     }
     perte_partie(ren, pacman.score, t, font, White, Red, gum, wall, biggum, cerise);
     SDL_Delay(1000);
