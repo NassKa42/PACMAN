@@ -62,6 +62,7 @@ int main(int argc, char** argv){
     SDL_Texture* texture_pac_1 = loadTexture("pakuman_1.bmp",ren);
     SDL_Texture* texture_pac_2 = loadTexture("pakuman_2.bmp",ren);
     SDL_Texture* texture_pac_3 = loadTexture("pakuman_3.bmp",ren);
+    SDL_Texture* texture_pac_5 = loadTexture("pakuman_5.bmp",ren);
     SDL_Texture* gum = loadTexture("gum.bmp",ren);
     SDL_Texture* wall = loadTexture("wall.bmp",ren);
     SDL_Texture* biggum = loadTexture("bigGum.bmp",ren);
@@ -122,12 +123,12 @@ int main(int argc, char** argv){
             SDL_Delay(16- niv);
         }
         if (hurt == 1){
-            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise);
+            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise, texture_pac_0, texture_pac_5);
             hurt = 0;
         } else if (finitopipo == 0){
             finitopipo = 1;
             niv ++;
-            niveau_gagne(ren,pacman.score,pacman,t, font, White, gum, wall, biggum, cerise);
+            niveau_gagne(ren,pacman.score,pacman,t, font, White, gum, wall, biggum, cerise, texture_pac_0 , texture_pac_2);
             t = initPlateau(map);
             SDL_RenderClear(ren);
             

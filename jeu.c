@@ -15,9 +15,7 @@ char start(plateau t, SDL_Renderer* ren, TTF_Font* font, SDL_Color Red,SDL_Textu
     return c;
 }
 
-void perte_vie(SDL_Renderer* ren, int lives, Player pacman, plateau t,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise){
-    SDL_Texture* ouvert = loadTexture("pakuman_0.bmp",ren);
-    SDL_Texture* ferme = loadTexture("pakuman_5.bmp",ren);
+void perte_vie(SDL_Renderer* ren, int lives, Player pacman, plateau t,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise, SDL_Texture* ouvert, SDL_Texture* ferme){
     for (int i = 0; i<2; i++){
         SDL_RenderClear(ren);
         ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
@@ -34,10 +32,8 @@ void perte_vie(SDL_Renderer* ren, int lives, Player pacman, plateau t,SDL_Textur
     }   
 }
 
-void niveau_gagne(SDL_Renderer* ren , int score , Player pacman, plateau t, TTF_Font* font, SDL_Color White,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise){
+void niveau_gagne(SDL_Renderer* ren , int score , Player pacman, plateau t, TTF_Font* font, SDL_Color White,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise,SDL_Texture* droite, SDL_Texture* gauche){
     SDL_Delay(500);
-    SDL_Texture* droite = loadTexture("pakuman_0.bmp",ren);
-    SDL_Texture* gauche = loadTexture("pakuman_2.bmp",ren);
     char text[16]; 
     sprintf(text,"Score : %d",score);
     for (int i = 0; i<2; i++){
