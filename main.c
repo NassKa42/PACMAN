@@ -104,7 +104,6 @@ int main(int argc, char** argv){
         if (score == 1820){
             finitopipo = 0;
         }
-        SDL_Delay(5);
     }
     SDL_Delay(1000);
     QuitSDL(win, ren);
