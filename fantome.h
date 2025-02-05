@@ -21,7 +21,7 @@ void caracfantome(fantome ghost);
 fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map);
 fantome deplacement_fantome_proche2(Player pacman, fantome ghost, plateau map);
 
-
+int is_collision_p2g(fantome ghost, Player pacman);
 
 
 
