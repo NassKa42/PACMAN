@@ -101,70 +101,143 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
     return ghost;
 }
 
-
-fantome deplacement_fantome_rng(fantome ghost,plateau map){
-    int collision = 0;
-    int deplace = rand()%2;
-        if ((ghost.dir == 'h' && is_collision_e2b(ghost.posX, ghost.posY-1, map) == 1) || (ghost.dir == 'b' && is_collision_e2b(ghost.posX, ghost.posY+1+ghostsize, map)  == 1))
-    {
-        if (is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 1)
-        {
-            ghost.dir = 'g';
-        }else if (is_collision_e2b(ghost.posX-1, ghost.posY, map)== 1)
-        {
-            ghost.dir = 'd';
-        }else if (deplace==0)
-        {
-            ghost.dir = 'd';
-        }else
-        {
-            ghost.dir = 'g';
-        }   
+fantome deplacement_fantome_rng_intersection(fantome ghost, plateau map){
+    int bouge = 0;
     
-    }else if ( (ghost.dir == 'g' && is_collision_e2b(ghost.posX-1, ghost.posY, map) == 1)|| (ghost.dir == 'd' && is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 1))
-    {
-        if (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 1)
-        {
-            ghost.dir = 'h';
-        }else if (is_collision_e2b(ghost.posX, ghost.posY-1, map) == 1)
-        {
-            ghost.dir = 'b';
-        }else if (deplace==0)
-        {
-            ghost.dir = 'h';
-        }else
-        {
-            ghost.dir = 'b';
-        }   
-    }else
-    {   switch (ghost.dir)
+    int compte = 0;
+    char dir[4] = {'h', 'b',  'g','d'};
+    int possible[5] = {0,0,0,0,0};  
+    char nodemitour;
+    switch (ghost.dir)
     {
     case 'h':
-        ghost.posY --;
+        nodemitour = 'b';
         break;
-        
     case 'b':
-        ghost.posY ++;
+        nodemitour =  'h';
         break;
-        
     case 'g':
-        ghost.posX --;
+        nodemitour = 'd';
         break;
-        
     case 'd':
-        ghost.posX ++;
+        nodemitour =  'g';
         break;
     
     default:
         break;
+    } 
+    if (!is_collision_e2b(ghost.posX, ghost.posY - 1, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY - 1, map) && ghost.dir != 'b')
+    {
+         possible[0] = 1;//h
+         compte++;
+    }if (!is_collision_e2b(ghost.posX, ghost.posY + ghostsize, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY + ghostsize, map)&& ghost.dir != 'h')
+    {
+        possible[1] = 1;//b
+        compte++;
+    }if (!is_collision_e2b(ghost.posX - 1, ghost.posY, map) && !is_collision_e2b(ghost.posX - 1, ghost.posY + ghostsize - 1, map)&& ghost.dir != 'd')
+    {
+        possible[2] = 1;//g
+        compte++;
+    }if (!is_collision_e2b(ghost.posX + ghostsize, ghost.posY, map) && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY + ghostsize - 1, map)&& ghost.dir != 'g')
+    {
+        possible[3] = 1;//d
+        compte ++;
+    }int index = 4;
+    srand(time(NULL));
+    while (possible[index] == 0)
+    {
+        index = rand()%4;
     }
-        
-    };
-    return ghost;
+    switch (dir[index])
+    {
+    case 'h':
+        ghost.posY --;
+        ghost.dir = 'h';
+        break;
+    case 'b':
+        ghost.posY ++;
+        ghost.dir = 'b';
+        break;
+    case 'g':
+        ghost.posX --;
+        ghost.dir = 'g';
+        break;
+    case 'd':
+        ghost.posX ++;
+        ghost.dir = 'd';
+        break;
+    
+    default:
+        break;
+    }return ghost;
     
     
 
-};
+}
+
+// fantome deplacement_fantome_rng(fantome ghost,plateau map){
+//     int collision = 0;
+//     int deplace = rand()%2;
+//         if ((ghost.dir == 'h' && is_collision_e2b(ghost.posX, ghost.posY-1, map) == 1) || (ghost.dir == 'b' && is_collision_e2b(ghost.posX, ghost.posY+1+ghostsize, map)  == 1))
+//     {
+//         if (is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 1)
+//         {
+//             ghost.dir = 'g';
+//         }else if (is_collision_e2b(ghost.posX-1, ghost.posY, map)== 1)
+//         {
+//             ghost.dir = 'd';
+//         }else if (deplace==0)
+//         {
+//             ghost.dir = 'd';
+//         }else
+//         {
+//             ghost.dir = 'g';
+//         }   
+    
+//     }else if ( (ghost.dir == 'g' && is_collision_e2b(ghost.posX-1, ghost.posY, map) == 1)|| (ghost.dir == 'd' && is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 1))
+//     {
+//         if (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 1)
+//         {
+//             ghost.dir = 'h';
+//         }else if (is_collision_e2b(ghost.posX, ghost.posY-1, map) == 1)
+//         {
+//             ghost.dir = 'b';
+//         }else if (deplace==0)
+//         {
+//             ghost.dir = 'h';
+//         }else
+//         {
+//             ghost.dir = 'b';
+//         }   
+//     }else
+//     {   switch (ghost.dir)
+//     {
+//     case 'h':
+//         ghost.posY --;
+//         break;
+        
+//     case 'b':
+//         ghost.posY ++;
+//         break;
+        
+//     case 'g':
+//         ghost.posX --;
+//         break;
+        
+//     case 'd':
+//         ghost.posX ++;
+//         break;
+    
+//     default:
+//         break;
+//     }
+        
+//     };
+//     return ghost;
+    
+    
+
+// };
 
 fantome deplacement_fantome_rng2222(fantome ghost,plateau map){ //CHANGER LE NOM
     int deplace = rand()%2;
@@ -235,44 +308,44 @@ fantome deplacement_fantome_rng2222(fantome ghost,plateau map){ //CHANGER LE NOM
 
 
 
-fantome deplacement_fantome_proche2(Player pacman, fantome ghost, plateau map){
-   int newposX = ghost.posX;
-   int newposY = ghost.posY;
-   if (ghost.posX < pacman.x && (is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 0)) // pacman a droite du pelo
-    {
-        //va a droite si possible   
-        ghost.posX ++;
-        ghost.dir = 'd';
-        printf("droit\n");
-        return ghost;
+// fantome deplacement_fantome_proche2(Player pacman, fantome ghost, plateau map){
+//    int newposX = ghost.posX;
+//    int newposY = ghost.posY;
+//    if (ghost.posX < pacman.x && (is_collision_e2b(ghost.posX+ghostsize+1, ghost.posY, map) == 0)) // pacman a droite du pelo
+//     {
+//         //va a droite si possible   
+//         ghost.posX ++;
+//         ghost.dir = 'd';
+//         printf("droit\n");
+//         return ghost;
              
-    }else if (ghost.posX > pacman.x && is_collision_e2b(ghost.posX-1, ghost.posY, map) == 0) // pacman a gauche
-    {
-        ghost.posX --;
-        ghost.dir = 'g';
-        printf("gauche\n");
-        return ghost;
+//     }else if (ghost.posX > pacman.x && is_collision_e2b(ghost.posX-1, ghost.posY, map) == 0) // pacman a gauche
+//     {
+//         ghost.posX --;
+//         ghost.dir = 'g';
+//         printf("gauche\n");
+//         return ghost;
         
-    }else if (ghost.posY < pacman.y && (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 0)) // pacman en bas
-    {
-        ghost.posY ++;
-        ghost.dir = 'b';
-        printf("bas\n");
-        return ghost;
-    }else if (ghost.posY > pacman.y && is_collision_e2b(ghost.posX, ghost.posY-1, map) == 0 ) //pac en haut
-    {
-        ghost.posY --;
-        ghost.dir = 'h';
-        printf("haut\n");
-        return ghost;
-        }
-    else
-    {
-        printf("randomidzaulbbbbbbbbbbbbbbbbbbbbblllllllllllllllllllllllllllllllllllllllllllllllllllll\n");
-        return deplacement_fantome_rng(ghost, map);
+//     }else if (ghost.posY < pacman.y && (is_collision_e2b(ghost.posX, ghost.posY+ghostsize+1, map) == 0)) // pacman en bas
+//     {
+//         ghost.posY ++;
+//         ghost.dir = 'b';
+//         printf("bas\n");
+//         return ghost;
+//     }else if (ghost.posY > pacman.y && is_collision_e2b(ghost.posX, ghost.posY-1, map) == 0 ) //pac en haut
+//     {
+//         ghost.posY --;
+//         ghost.dir = 'h';
+//         printf("haut\n");
+//         return ghost;
+//         }
+//     else
+//     {
+//         printf("randomidzaulbbbbbbbbbbbbbbbbbbbbblllllllllllllllllllllllllllllllllllllllllllllllllllll\n");
+//         return deplacement_fantome_rng(ghost, map);
         
-    }
-    };
+//     }
+//     };
 
 int is_collision_p2g(fantome ghost, Player pacman){
     if (pacman.x >= ghost.posX && pacman.x <= ghost.posX + ghostsize){
