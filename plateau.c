@@ -271,3 +271,9 @@ SDL_Renderer* aff_vies(int lives, SDL_Renderer* ren,SDL_Texture* vie){
     }
     return ren;
 }
+
+void aff_score(int score, SDL_Renderer* ren,TTF_Font* font, SDL_Color White ){
+    char text[16];
+    sprintf(text,"Score : %d",score);
+    printText(0,8 * taillecase,text,4* taillecase,2 * taillecase,font,White,ren);
+}

@@ -139,9 +139,7 @@ int main(int argc, char** argv){
             ren = aff_fantome(pinky.posX,pinky.posY,ren,pinky.dir,pinky.name);
             ren = aff_fantome(clyde.posX,clyde.posY,ren,clyde.dir,clyde.name);
             ren = aff_vies(lives ,ren,texture_pac_transparent);
-            char text[16];
-            sprintf(text,"Score : %d",pacman.score);
-            printText(0,9 * taillecase,text,4* taillecase,2 * taillecase,font,White,ren);
+            aff_score(pacman.score, ren, font, White);
             if (is_collision_p2g(blinky, pacman) == 1){
                 
                 if (big_gum_on == 0){
