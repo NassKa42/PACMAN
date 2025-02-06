@@ -108,24 +108,7 @@ fantome deplacement_fantome_rng_intersection(fantome ghost, plateau map){
     char dir[4] = {'h', 'b',  'g','d'};
     int possible[5] = {0,0,0,0,0};  
     char nodemitour;
-    switch (ghost.dir)
-    {
-    case 'h':
-        nodemitour = 'b';
-        break;
-    case 'b':
-        nodemitour =  'h';
-        break;
-    case 'g':
-        nodemitour = 'd';
-        break;
-    case 'd':
-        nodemitour =  'g';
-        break;
-    
-    default:
-        break;
-    } 
+   
     if (!is_collision_e2b(ghost.posX, ghost.posY - 1, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY - 1, map) && ghost.dir != 'b')
     {
          possible[0] = 1;//h
@@ -142,7 +125,35 @@ fantome deplacement_fantome_rng_intersection(fantome ghost, plateau map){
     {
         possible[3] = 1;//d
         compte ++;
-    }int index = 4;
+    }
+    if (compte == 0)
+    {
+        switch (ghost.dir)
+    {
+    case 'h':
+        ghost.posY ++;
+        ghost.dir = 'b';
+        break;
+    case 'b':
+        
+        ghost.posY --;
+        ghost.dir = 'h';
+        break;
+    case 'g':
+        ghost.posX ++;
+        ghost.dir = 'd';
+        break;
+    case 'd':
+        
+        ghost.posX --;
+        ghost.dir = 'g';
+        break;
+    
+    default:
+        break;
+    }
+    }else
+    {int index = 4;
     srand(time(NULL));
     while (possible[index] == 0)
     {
@@ -169,7 +180,13 @@ fantome deplacement_fantome_rng_intersection(fantome ghost, plateau map){
     
     default:
         break;
-    }return ghost;
+    }
+         
+    }
+    
+    
+    
+    return ghost;
     
     
 
