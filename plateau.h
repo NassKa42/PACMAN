@@ -19,5 +19,6 @@ plateau remove_gum(int e_x, int e_y, plateau map);
 SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir,SDL_Texture* texture_pac_0,SDL_Texture* texture_pac_1,SDL_Texture* texture_pac_2,SDL_Texture* texture_pac_3, SDL_Texture* texture_pac_5, int animation);
 SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10]);
 SDL_Renderer* aff_vies(int lives, SDL_Renderer* ren,SDL_Texture* vie);
+void aff_score(int score, SDL_Renderer* ren,TTF_Font* font, SDL_Color White);
 
 #endif
