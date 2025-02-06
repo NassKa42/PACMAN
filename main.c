@@ -72,15 +72,16 @@ int main(int argc, char** argv){
     TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
     graphPlateau(ren,t, gum, wall, biggum, cerise);
     updateDisplay(ren);
+    char dir;
+    char tempo;
+    char secondaire;
+    char trash;
     int score_niv = calcul_score(t);
     int score_fruits = 0;
     int lives = 3;
     int finitopipo = 1;
     int hurt = 0;
-    char dir;
-    char tempo;
     int niv = 1;
-    char secondaire;
     int compteurframes=0;
     int etapeanimation=0;
     int big_gum_on =0;
@@ -89,6 +90,8 @@ int main(int argc, char** argv){
     int score;
     while (lives >0){
         big_gum_on = 0;
+        secondaire = ' ';
+        dir = ' ';
         dir = start(t, ren, font, Red, gum, wall, biggum, cerise);
         while (finitopipo ==1 && hurt == 0){   
             tempo = processKeyboard();
@@ -186,13 +189,14 @@ int main(int argc, char** argv){
         if (hurt == 1){
             perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_0,texture_pac_5,texture_pac_transparent);
             hurt = 0;
+            trash = processKeyboard();
         } else if (finitopipo == 0){
             finitopipo = 1;
             niv ++;
             niveau_gagne(ren,pacman.score,pacman,t, font, White, gum, wall, biggum, cerise,texture_pac_0,texture_pac_2);
             t = initPlateau(map);
             SDL_RenderClear(ren);
-            
+            trash = processKeyboard();
         }
         inky = reset_fantome(inky,10,10);
         blinky = reset_fantome(blinky,6,12);

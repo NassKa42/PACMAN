@@ -3,6 +3,7 @@
 
 char start(plateau t, SDL_Renderer* ren, TTF_Font* font, SDL_Color Red,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise){
     char c=' ';
+    SDL_Delay(500);
     ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
     printText(((taillecase*t.large)/2)-200,((taillecase*t.haut)/2)-40,"Appuyer pour demarrer",400,80,font,Red, ren);
     updateDisplay(ren);
