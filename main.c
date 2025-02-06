@@ -87,7 +87,8 @@ int main(int argc, char** argv){
     int big_gum_on =0;
     int debut_gum = 0;
     int duree_gum = 500;
-    int score;
+    int score = 0;
+    int score_fantomes = 0;
     while (lives >0){
         big_gum_on = 0;
         secondaire = ' ';
@@ -151,6 +152,8 @@ int main(int argc, char** argv){
                     lives --;
                 } else {
                     blinky = reset_fantome(blinky,9,10);
+                    score_fantomes = score_fantomes + 200;
+                    pacman.score = pacman.score+200;
                 }
             } else
             if (is_collision_p2g(inky, pacman) == 1){
@@ -159,6 +162,8 @@ int main(int argc, char** argv){
                     lives --;
                 } else {
                     inky = reset_fantome(inky,9,10);
+                    score_fantomes = score_fantomes + 200;
+                    pacman.score = pacman.score+200;
                 }
             } else
             if (is_collision_p2g(pinky, pacman) == 1){
@@ -167,6 +172,8 @@ int main(int argc, char** argv){
                     lives --;
                 } else {
                     pinky = reset_fantome(pinky,9,10);
+                    score_fantomes = score_fantomes + 200;
+                    pacman.score = pacman.score+200;
                 }
             } else
             if (is_collision_p2g(clyde, pacman) == 1){
@@ -175,10 +182,12 @@ int main(int argc, char** argv){
                     lives --;
                 } else {
                     clyde = reset_fantome(clyde,9,10);
+                    score_fantomes = score_fantomes + 200;
+                    pacman.score = pacman.score+200;
                 }
             }
             updateDisplay(ren);
-            if (pacman.score == score_niv * niv + score_fruits){
+            if (pacman.score == (score_niv * niv) + score_fruits + score_fantomes){
                 finitopipo = 0;
             }
             if (compteurframes - duree_gum > debut_gum){
