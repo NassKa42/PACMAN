@@ -73,15 +73,28 @@ SDL_Renderer* graphPlateau(SDL_Renderer* ren,plateau plat,SDL_Texture* gum,SDL_T
     return ren;
 }
 
-// int is_collision_e2b(int e_x, int e_y, plateau map){ // test collision entitée to block
-//     if (map.tab[e_y/taillecase][e_x/taillecase]==1)
-//     {
-//         return 1;
-//     }else
-//     {
-//         return 0;
-//     };
-// }
+int calcul_score(plateau plat){
+    int score_needed = 0;
+    for ( int i = 0; i<plat.haut; i++){
+        for ( int j = 0; j<plat.large; j++){
+            switch(plat.tab[i][j]){
+                case 2:
+                    score_needed = score_needed + 10;
+                    break;
+                case 3:
+                    score_needed = score_needed + 50;
+                    break;
+                case 4:
+                    score_needed = score_needed + 100;
+                    break;
+                default:
+                    break;
+                }
+
+        }
+    }
+    return score_needed;
+}
 
 
 int is_collision_e2b(int e_x, int e_y, plateau map) {

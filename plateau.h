@@ -13,6 +13,7 @@ typedef struct plateauSt plateau;
 plateau initPlateau();
 int affichePlateau(plateau t);
 SDL_Renderer* graphPlateau(SDL_Renderer* renderer,plateau plat,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise);
+int calcul_score(plateau plat);
 int is_collision_e2b(int e_x, int e_y, plateau map);
 int is_collision_p2gmgc(int e_x, int e_y, plateau map);
 plateau remove_gum(int e_x, int e_y, plateau map);

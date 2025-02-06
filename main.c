@@ -72,6 +72,8 @@ int main(int argc, char** argv){
     TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
     graphPlateau(ren,t, gum, wall, biggum, cerise);
     updateDisplay(ren);
+    int score_niv = calcul_score(t);
+    int score_fruits = 0;
     int lives = 3;
     int finitopipo = 1;
     int hurt = 0;
@@ -141,15 +143,39 @@ int main(int argc, char** argv){
             ren = aff_vies(lives ,ren,texture_pac_transparent);
             aff_score(pacman.score, ren, font, White);
             if (is_collision_p2g(blinky, pacman) == 1){
-                
                 if (big_gum_on == 0){
                     hurt = 1;
                     lives --;
+                } else {
+                    blinky = reset_fantome(blinky,9,10);
                 }
-                
+            } else
+            if (is_collision_p2g(inky, pacman) == 1){
+                if (big_gum_on == 0){
+                    hurt = 1;
+                    lives --;
+                } else {
+                    inky = reset_fantome(inky,9,10);
+                }
+            } else
+            if (is_collision_p2g(pinky, pacman) == 1){
+                if (big_gum_on == 0){
+                    hurt = 1;
+                    lives --;
+                } else {
+                    pinky = reset_fantome(pinky,9,10);
+                }
+            } else
+            if (is_collision_p2g(clyde, pacman) == 1){
+                if (big_gum_on == 0){
+                    hurt = 1;
+                    lives --;
+                } else {
+                    clyde = reset_fantome(clyde,9,10);
+                }
             }
             updateDisplay(ren);
-            if (pacman.score == 100 * niv){
+            if (pacman.score == score_niv * niv + score_fruits){
                 finitopipo = 0;
             }
             if (compteurframes - duree_gum > debut_gum){
