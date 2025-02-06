@@ -170,13 +170,18 @@ SDL_Renderer* aff_pac(int e_x, int e_y, SDL_Renderer* ren, char dir,SDL_Texture*
     return ren;
 }
 
-SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10]){
+SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char ghost_name[10], int big_gum_on){
     // char nom_doc[15];
     // nom_doc[0] = 'f';
     // printf("%s \n",nom_doc);
     // printf("%c , \\0 \n", nom_doc[14] );
     // char pos = ' ';
     // char ghost_number = ' ';
+    if (big_gum_on == 1){
+        SDL_Texture* text_ghost = loadTexture("ghost_scared.bmp",ren);
+        renderTexture(text_ghost,ren,e_x,e_y,ghostsize,ghostsize);
+        return ren;
+    }
     char nom_doc[13];
     switch(dir){
         case 'h':

@@ -140,10 +140,10 @@ int main(int argc, char** argv){
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
             
             ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3,texture_pac_5,etapeanimation);
-            ren = aff_fantome(blinky.posX,blinky.posY,ren,blinky.dir,blinky.name);
-            ren = aff_fantome(inky.posX,inky.posY,ren,inky.dir,inky.name);
-            ren = aff_fantome(pinky.posX,pinky.posY,ren,pinky.dir,pinky.name);
-            ren = aff_fantome(clyde.posX,clyde.posY,ren,clyde.dir,clyde.name);
+            ren = aff_fantome(blinky.posX,blinky.posY,ren,blinky.dir,blinky.name, big_gum_on);
+            ren = aff_fantome(inky.posX,inky.posY,ren,inky.dir,inky.name,big_gum_on);
+            ren = aff_fantome(pinky.posX,pinky.posY,ren,pinky.dir,pinky.name,big_gum_on);
+            ren = aff_fantome(clyde.posX,clyde.posY,ren,clyde.dir,clyde.name,big_gum_on);
             ren = aff_vies(lives ,ren,texture_pac_transparent);
             aff_score(pacman.score, ren, font, White);
             if (is_collision_p2g(blinky, pacman) == 1){
