@@ -89,6 +89,7 @@ int main(int argc, char** argv){
     int duree_gum = 500;
     int score = 0;
     int score_fantomes = 0;
+    int fruit_spawned = 0;
     while (lives >0){
         big_gum_on = 0;
         secondaire = ' ';
@@ -193,9 +194,18 @@ int main(int argc, char** argv){
             if (compteurframes - duree_gum > debut_gum){
                 big_gum_on = 0; //fin big gum
             }
+            if (compteurframes == 300 && fruit_spawned == 0){
+                t.tab[start_y][start_x] = 4;
+                score_fruits = score_fruits + 100;
+                fruit_spawned = 1;
+            }
             SDL_Delay(16- niv);
         }
         if (hurt == 1){
+            if (t.tab[start_y][start_x] == 4){
+                t.tab[start_y][start_x] = 0;
+                score_fruits = score_fruits -100;
+            }
             perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_0,texture_pac_5,texture_pac_transparent);
             hurt = 0;
             trash = processKeyboard();
@@ -206,12 +216,14 @@ int main(int argc, char** argv){
             t = initPlateau(map);
             SDL_RenderClear(ren);
             trash = processKeyboard();
+            fruit_spawned = 0;
         }
         inky = reset_fantome(inky,10,10);
         blinky = reset_fantome(blinky,6,12);
         pinky = reset_fantome(pinky,9,10);
         clyde = reset_fantome(clyde,8,10);
         pacman = reset_player(pacman);
+        compteurframes = 0;
     }
     perte_partie(ren, pacman.score, t, font, White, Red, gum, wall, biggum, cerise);
     SDL_Delay(1000);
