@@ -115,12 +115,14 @@ int is_collision_e2b(int e_x, int e_y, plateau map) {
     return 0; // Pas de collision
 }
 int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision pacman to gum/ megam gum / cherry
-    if (map.tab[e_y/taillecase][e_x/taillecase]==2)
+    e_y = (e_y + (taillecase / 2))/taillecase;
+    e_x = (e_x + (taillecase / 2))/taillecase;
+    if (map.tab[e_y][e_x]==2)
     {
         return 1;
-    }else if(map.tab[e_y/taillecase][e_x/taillecase]==3){
+    }else if(map.tab[e_y][e_x]==3){
         return 2;
-    }else if(map.tab[e_y/taillecase][e_x/taillecase]==4){
+    }else if(map.tab[e_y][e_x]==4){
         return 3;
     }else{
         return 0;
@@ -128,8 +130,8 @@ int is_collision_p2gmgc(int e_x, int e_y, plateau map){ // test collision pacman
 }
 
 plateau remove_gum(int e_x, int e_y, plateau map){
-    int t_y = e_y/taillecase;
-    int t_x = e_x/taillecase;
+    int t_y = (e_y + (taillecase / 2))/taillecase;
+    int t_x = (e_x + (taillecase / 2))/taillecase;
     switch(map.tab[t_y][t_x]){
         case 1:
             break;

@@ -134,12 +134,13 @@ int main(int argc, char** argv){
             clyde = deplacement_fantome_rng_intersection(clyde, t);
             SDL_RenderClear(ren);
             score = score_gum(pacman, t);
+            t = remove_gum(pacman.x,pacman.y,t);
             if (score == 50){
                 big_gum_on = 1;
                 debut_gum = compteurframes;
             }
             pacman.score = pacman.score + score;
-            t = remove_gum(pacman.x,pacman.y,t);
+            
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
             
             ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3,texture_pac_5,etapeanimation);
