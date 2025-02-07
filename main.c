@@ -18,6 +18,26 @@ MAP :
 #include "jeu.h"
 
 int main(int argc, char** argv){
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        return -1;
+    }
+    SDL_AudioSpec wavSpec;
+    Uint32 wavLength;
+    Uint8 *wavBuffer;
+
+    if (SDL_LoadWAV("calm1.wav", &wavSpec, &wavBuffer, &wavLength) == NULL) {
+        printf("Error loading WAV file: %s\n", SDL_GetError());
+        return -1;
+    }
+    if (SDL_OpenAudio(&wavSpec, NULL) < 0) {
+        printf("SDL_OpenAudio failed: %s\n", SDL_GetError());
+        return -1;
+    }
+    SDL_PauseAudio(0);
+    SDL_QueueAudio(1, wavBuffer, wavLength);
+    SDL_Delay(5000);
+    
     // caracfantome(inky);
     // caracfantome(blinky);
     // caracfantome(pinky);
@@ -227,6 +247,8 @@ int main(int argc, char** argv){
     }
     perte_partie(ren, pacman.score, t, font, White, Red, gum, wall, biggum, cerise);
     SDL_Delay(1000);
+    SDL_CloseAudio();
+    SDL_FreeWAV(wavBuffer);
     QuitSDL(win, ren);
     return 0;
 }
