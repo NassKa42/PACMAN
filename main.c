@@ -64,6 +64,10 @@ int main(int argc, char** argv){
     SDL_Texture* texture_pac_2 = loadTexture("pakuman_2.bmp",ren);
     SDL_Texture* texture_pac_3 = loadTexture("pakuman_3.bmp",ren);
     SDL_Texture* texture_pac_5 = loadTexture("pakuman_5.bmp",ren);
+    SDL_Texture* texture_pac_10 = loadTexture("pakuman_10.bmp",ren);
+    SDL_Texture* texture_pac_11 = loadTexture("pakuman_11.bmp",ren);
+    SDL_Texture* texture_pac_12 = loadTexture("pakuman_12.bmp",ren);
+    SDL_Texture* texture_pac_13 = loadTexture("pakuman_13.bmp",ren);
     SDL_Texture* texture_pac_transparent = loadTexture("pakuman_transparent.bmp",ren);
     SDL_Texture* gum = loadTexture("gum.bmp",ren);
     SDL_Texture* wall = loadTexture("wall.bmp",ren);
@@ -91,12 +95,14 @@ int main(int argc, char** argv){
     int score = 0;
     int score_fantomes = 0;
     int fruit_spawned = 0;
+    int entraindouvrirlabouche=0;
     while (lives >0){
         big_gum_on = 0;
         secondaire = ' ';
         dir = ' ';
         dir = start(t, ren, font, Red, gum, wall, biggum, cerise);
         while (finitopipo ==1 && hurt == 0){   
+
             tempo = processKeyboard();
             if (tempo != ' ') {
                 if (PeutBouger(tempo, pacman, t)==1){
@@ -107,23 +113,35 @@ int main(int argc, char** argv){
                 };
             }
             else{
-                if(secondaire != ' ' && PeutBouger(secondaire, pacman, t)==1){
+                if(secondaire != ' ' && PeutBouger(secondaire, pacman, t)==1 && (dir=='h' && secondaire!='b' || dir=='b' && secondaire!='h' || dir=='g' && secondaire!='d' || dir=='d' && secondaire!='g')){
                     dir = secondaire;
                     secondaire=' ';
                 };
             };
-            if(compteurframes%10 == 0){
+
+            if(compteurframes%5 == 0){
                 switch(etapeanimation){
                     case 0:
-                        etapeanimation=2;
+                        etapeanimation=1;
+                        entraindouvrirlabouche=1;
+                        break;
+                    case 1:
+                        if (entraindouvrirlabouche==1){
+                            etapeanimation=2;
+                        }
+                        else {
+                            etapeanimation=0;
+                        };
                         break;
                     case 2:
-                        etapeanimation=0;
+                        etapeanimation=1;
+                        entraindouvrirlabouche=0;
                         break;
                     default:
                         break;
                 };
             };
+
             compteurframes++;
 
             // printf("%d \n", PeutBouger(dir, pacman, t));
@@ -143,8 +161,7 @@ int main(int argc, char** argv){
             
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
             
-            ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3,texture_pac_5,etapeanimation);
-            ren = aff_fantome(blinky.posX,blinky.posY,ren,blinky.dir,blinky.name, big_gum_on);
+            ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3,texture_pac_10, texture_pac_11, texture_pac_12, texture_pac_13, texture_pac_5,etapeanimation);            ren = aff_fantome(blinky.posX,blinky.posY,ren,blinky.dir,blinky.name, big_gum_on);
             ren = aff_fantome(inky.posX,inky.posY,ren,inky.dir,inky.name,big_gum_on);
             ren = aff_fantome(pinky.posX,pinky.posY,ren,pinky.dir,pinky.name,big_gum_on);
             ren = aff_fantome(clyde.posX,clyde.posY,ren,clyde.dir,clyde.name,big_gum_on);
