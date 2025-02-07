@@ -46,27 +46,26 @@ int fantome_peut_avancer(fantome ghost, plateau map){//1 == peut avancer
 
 fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map) {
     int bouge = 0; 
-    if (ghost.posX < pacman.x && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY, map) && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY + ghostsize - 1, map)) {
-        ghost.posX++;
-        ghost.dir = 'd';
-        bouge = 1;
-    } 
-    if (!bouge && ghost.posX > pacman.x &&  !is_collision_e2b(ghost.posX - 1, ghost.posY, map) && !is_collision_e2b(ghost.posX - 1, ghost.posY + ghostsize - 1, map)) {
-        ghost.posX--;
-        ghost.dir = 'g';
-        bouge = 1;
-    } 
     if (!bouge && ghost.posY < pacman.y &&  !is_collision_e2b(ghost.posX, ghost.posY + ghostsize, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY + ghostsize, map)) {
         ghost.posY++;
         ghost.dir = 'b';
-        bouge = 1;
-    } 
+
+    } else
     if (!bouge && ghost.posY > pacman.y &&  !is_collision_e2b(ghost.posX, ghost.posY - 1, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY - 1, map)) {
         ghost.posY--;
         ghost.dir = 'h';
-        bouge = 1;
-    }
 
+    }else 
+    if (ghost.posX < pacman.x && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY, map) && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY + ghostsize - 1, map)) {
+        ghost.posX++;
+        ghost.dir = 'd';
+
+    } else
+    if (!bouge && ghost.posX > pacman.x &&  !is_collision_e2b(ghost.posX - 1, ghost.posY, map) && !is_collision_e2b(ghost.posX - 1, ghost.posY + ghostsize - 1, map)) {
+        ghost.posX--;
+        ghost.dir = 'g';
+
+    } 
     return ghost;
 }
 
@@ -85,8 +84,11 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             ghost.dir = 'd';
             if (bouge !=0){
                 ghost = deplacement_fantome_proche(pacman, ghost, map);
+            } else if (fantome_peut_avancer(ghost, map) == 1){
+                ghost.posX ++; 
             } else {
-                ghost.posX ++;
+                ghost.dir = 'g';
+                // ghost = deplacement_fantome_proche(pacman,ghost, map);
             }
             break;
         case 'g':
@@ -101,8 +103,11 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             ghost.dir = 'g';
             if (bouge !=0){
                 ghost = deplacement_fantome_proche(pacman, ghost, map);
+            } else if (fantome_peut_avancer(ghost, map) == 1){
+                ghost.posX --; 
             } else {
-                ghost.posX --;
+                ghost.dir = 'd';
+                // ghost = deplacement_fantome_proche(pacman,ghost, map);
             }
             break;
         case 'h':
@@ -117,8 +122,10 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             ghost.dir = 'h';
             if (bouge !=0){
                 ghost = deplacement_fantome_proche(pacman, ghost, map);
-            } else {
+            } else if (fantome_peut_avancer(ghost, map) == 1){
                 ghost.posY --; 
+            } else {
+                ghost = deplacement_fantome_rng_intersection(ghost, map);
             }
             break;
         case 'b':
@@ -133,8 +140,10 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             ghost.dir = 'b';
             if (bouge !=0){
                 ghost = deplacement_fantome_proche(pacman, ghost, map);
-            } else {
+            } else if (fantome_peut_avancer(ghost, map) == 1){
                 ghost.posY ++; 
+            } else {
+                ghost =deplacement_fantome_rng_intersection(ghost, map);
             }
             break;
         default :
