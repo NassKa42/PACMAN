@@ -18,26 +18,7 @@ MAP :
 #include "jeu.h"
 
 int main(int argc, char** argv){
-    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        return -1;
-    }
-    SDL_AudioSpec wavSpec;
-    Uint32 wavLength;
-    Uint8 *wavBuffer;
-
-    if (SDL_LoadWAV("calm1.wav", &wavSpec, &wavBuffer, &wavLength) == NULL) {
-        printf("Error loading WAV file: %s\n", SDL_GetError());
-        return -1;
-    }
-    if (SDL_OpenAudio(&wavSpec, NULL) < 0) {
-        printf("SDL_OpenAudio failed: %s\n", SDL_GetError());
-        return -1;
-    }
-    SDL_PauseAudio(0);
-    SDL_QueueAudio(1, wavBuffer, wavLength);
-    SDL_Delay(5000);
-    
+    musique("calm1.wav", 0);
     // caracfantome(inky);
     // caracfantome(blinky);
     // caracfantome(pinky);
@@ -224,11 +205,17 @@ int main(int argc, char** argv){
         if (hurt == 1){
             if (t.tab[start_y][start_x] == 4){
                 t.tab[start_y][start_x] = 0;
-                score_fruits = score_fruits -100;
+                score_fruits = score_fruits -100;    
             }
             perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_0,texture_pac_5,texture_pac_transparent);
             hurt = 0;
             trash = processKeyboard();
+            // SDL_Delay(1000);
+            // musique("calm1.wav", 1);
+            // musique("hit3.wav",0);
+            // SDL_Delay(1000);
+            // musique("hit3", 1);
+            // musique("calm1.wav", 0);
         } else if (finitopipo == 0){
             finitopipo = 1;
             niv ++;
@@ -247,8 +234,8 @@ int main(int argc, char** argv){
     }
     perte_partie(ren, pacman.score, t, font, White, Red, gum, wall, biggum, cerise);
     SDL_Delay(1000);
-    SDL_CloseAudio();
-    SDL_FreeWAV(wavBuffer);
+    musique("calm1.wav", 1);
+    
     QuitSDL(win, ren);
     return 0;
 }

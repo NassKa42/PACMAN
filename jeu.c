@@ -71,3 +71,32 @@ void perte_partie(SDL_Renderer* ren, int score, plateau t,TTF_Font* font, SDL_Co
         SDL_Delay(500);
     }   
 }
+
+int musique(char nom_doc[10], int fin){
+    // if (Buffer != {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07}){
+    //     wavBuffer = Buffer;
+    // }
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        //printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        return -1;
+    }
+    SDL_AudioSpec wavSpec;
+    Uint32 wavLength;
+    Uint8 *wavBuffer;
+    if (fin ==1){
+        SDL_FreeWAV(wavBuffer);
+        SDL_CloseAudio();
+        return 0;
+    }
+    if (SDL_LoadWAV(nom_doc, &wavSpec, &wavBuffer, &wavLength) == NULL) {
+        //printf("Error loading WAV file: %s\n", SDL_GetError());
+        return -1;
+    }
+    if (SDL_OpenAudio(&wavSpec, NULL) < 0) {
+        // printf("SDL_OpenAudio failed: %s\n", SDL_GetError());
+        return -1;
+    }
+    SDL_PauseAudio(0);
+    SDL_QueueAudio(1, wavBuffer, wavLength);
+    
+}
