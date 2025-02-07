@@ -47,22 +47,22 @@ int fantome_peut_avancer(fantome ghost, plateau map){//1 == peut avancer
 fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map) {
     int bouge = 0; 
     if (!bouge && ghost.posY < pacman.y &&  !is_collision_e2b(ghost.posX, ghost.posY + ghostsize, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY + ghostsize, map)) {
-        ghost.posY++;
+        ghost.posY = ghost.posY + ghost_speed;
         ghost.dir = 'b';
 
     } else
     if (!bouge && ghost.posY > pacman.y &&  !is_collision_e2b(ghost.posX, ghost.posY - 1, map) && !is_collision_e2b(ghost.posX + ghostsize - 1, ghost.posY - 1, map)) {
-        ghost.posY--;
+        ghost.posY = ghost.posY - ghost_speed;
         ghost.dir = 'h';
 
     }else 
     if (ghost.posX < pacman.x && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY, map) && !is_collision_e2b(ghost.posX + ghostsize, ghost.posY + ghostsize - 1, map)) {
-        ghost.posX++;
+        ghost.posX = ghost.posX + ghost_speed;
         ghost.dir = 'd';
 
     } else
     if (!bouge && ghost.posX > pacman.x &&  !is_collision_e2b(ghost.posX - 1, ghost.posY, map) && !is_collision_e2b(ghost.posX - 1, ghost.posY + ghostsize - 1, map)) {
-        ghost.posX--;
+        ghost.posX = ghost.posX - ghost_speed;
         ghost.dir = 'g';
 
     } 
@@ -85,7 +85,7 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             if (bouge !=0){
                 ghost = deplacement_fantome_proche(pacman, ghost, map);
             } else if (fantome_peut_avancer(ghost, map) == 1){
-                ghost.posX ++; 
+                ghost.posX = ghost.posX + ghost_speed;
             } else {
                 ghost.dir = 'g';
                 // ghost = deplacement_fantome_proche(pacman,ghost, map);
@@ -104,7 +104,7 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             if (bouge !=0){
                 ghost = deplacement_fantome_proche(pacman, ghost, map);
             } else if (fantome_peut_avancer(ghost, map) == 1){
-                ghost.posX --; 
+                ghost.posX = ghost.posX - ghost_speed;
             } else {
                 ghost.dir = 'd';
                 // ghost = deplacement_fantome_proche(pacman,ghost, map);
@@ -123,7 +123,7 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             if (bouge !=0){
                 ghost = deplacement_fantome_proche(pacman, ghost, map);
             } else if (fantome_peut_avancer(ghost, map) == 1){
-                ghost.posY --; 
+                ghost.posY = ghost.posY - ghost_speed;
             } else {
                 ghost = deplacement_fantome_rng_intersection(ghost, map);
             }
@@ -141,7 +141,7 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             if (bouge !=0){
                 ghost = deplacement_fantome_proche(pacman, ghost, map);
             } else if (fantome_peut_avancer(ghost, map) == 1){
-                ghost.posY ++; 
+                ghost.posY = ghost.posY + ghost_speed; 
             } else {
                 ghost =deplacement_fantome_rng_intersection(ghost, map);
             }
@@ -208,21 +208,21 @@ fantome deplacement_fantome_rng_intersection(fantome ghost, plateau map){
         switch (ghost.dir)
     {
     case 'h':
-        ghost.posY ++;
+        ghost.posY = ghost.posY + ghost_speed;
         ghost.dir = 'b';
         break;
     case 'b':
         
-        ghost.posY --;
+        ghost.posY = ghost.posY - ghost_speed;
         ghost.dir = 'h';
         break;
     case 'g':
-        ghost.posX ++;
+        ghost.posX = ghost.posX + ghost_speed;
         ghost.dir = 'd';
         break;
     case 'd':
         
-        ghost.posX --;
+        ghost.posX = ghost.posX - ghost_speed;
         ghost.dir = 'g';
         break;
     
@@ -239,19 +239,19 @@ fantome deplacement_fantome_rng_intersection(fantome ghost, plateau map){
     switch (dir[index])
     {
     case 'h':
-        ghost.posY --;
+        ghost.posY = ghost.posY - ghost_speed;
         ghost.dir = 'h';
         break;
     case 'b':
-        ghost.posY ++;
+        ghost.posY = ghost.posY + ghost_speed;
         ghost.dir = 'b';
         break;
     case 'g':
-        ghost.posX --;
+        ghost.posX = ghost.posX - ghost_speed;
         ghost.dir = 'g';
         break;
     case 'd':
-        ghost.posX ++;
+        ghost.posX = ghost.posX + ghost_speed;
         ghost.dir = 'd';
         break;
     

@@ -34,17 +34,17 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
     switch (direction){
         case 'g' :
             if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseY==0 && tableau.tab[PosTableauY][(pakuman.x-1)/taillecase]!=1) || (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1 && PosDansCaseX!=0) ){
-                pakuman.x= pakuman.x-5;
+                pakuman.x= pakuman.x-pac_speed;
             };
             break;
         case 'd':
             if ( (tableau.tab[PosTableauY][PosTableauX+1]!=1 && PosDansCaseY==0 ) || (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1 && PosDansCaseX!=0) ){
-                pakuman.x= pakuman.x+5;
+                pakuman.x= pakuman.x+pac_speed;
             };
             break;
         case 'h':
             if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseX==0 && tableau.tab[(pakuman.y-1)/taillecase][PosTableauX]!=1 ) || (tableau.tab[PosTableauY-1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp-1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
-                pakuman.y= pakuman.y-5;
+                pakuman.y= pakuman.y-pac_speed;
             };
             break;
         case 'b':
@@ -52,7 +52,7 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
                 break;
             } else
             if ( (tableau.tab[PosTableauY+1][PosTableauX]!=1 && PosDansCaseX==0 ) || (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
-                pakuman.y= pakuman.y+5;
+                pakuman.y= pakuman.y+pac_speed;
             };
             break;
     };
@@ -95,16 +95,16 @@ return oui;
 Player BougerFinal(Player pakuman, char direction) {
     switch(direction){
         case 'g':
-            pakuman.x= pakuman.x-5;
+            pakuman.x= pakuman.x-pac_speed;
             break;
         case 'd':
-            pakuman.x= pakuman.x+5;
+            pakuman.x= pakuman.x+pac_speed;
             break;
         case 'b':
-            pakuman.y= pakuman.y+5;
+            pakuman.y= pakuman.y+pac_speed;
             break;
         case 'h':
-            pakuman.y= pakuman.y-5;
+            pakuman.y= pakuman.y-pac_speed;
             break;
     };
     return pakuman;
@@ -139,22 +139,22 @@ int score_gum(Player pacman, plateau t){
 int bouger(char direction, Player pakuman, plateau tabl){
     if (direction='d') {
         if (plateau[pakuman.x][pakuman.y+1]!=1){
-            pakuman.y= pakuman.y+5
+            pakuman.y= pakuman.y+pac_speed
         ;}
     ;};
     if (direction='g') {
         if (plateau[pakuman.x][pakuman.y-1]!=1){
-            pakuman.y= pakuman.y-5
+            pakuman.y= pakuman.y-pac_speed
         ;}
     ;};
     if (direction='h') {
         if (plateau[pakuman.x-1][pakuman.y]!=1){
-            pakuman.x= pakuman.x-5
+            pakuman.x= pakuman.x-pac_speed
         ;}
     ;};
     if (direction='b') {
         if (plateau[pakuman.x+1][pakuman.y+1]!=1){
-            pakuman.x= pakuman.x+5
+            pakuman.x= pakuman.x+pac_speed
         ;}
     ;}
 
@@ -164,16 +164,16 @@ Player bougerdirect(char direction, Player name){
     switch (direction)
     {
     case 'd':
-        name.y= name.x+5;
+        name.y= name.x+pac_speed;
         break;
     case 'g':
-        name.y= name.x-5;
+        name.y= name.x-pac_speed;
         break;
     case 'h':
-        name.x= name.y-5;
+        name.x= name.y-pac_speed;
         break;
     case 'b':
-        name.x= name.y+5;
+        name.x= name.y+pac_speed;
         break;
     default:
         break;

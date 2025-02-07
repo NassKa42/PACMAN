@@ -12,6 +12,8 @@
 #define ghostsize 30
 #define start_x 9
 #define start_y 12
+#define ghost_speed 3
+#define pac_speed 5
 
 //  gcc -o main *.c -Iinclude -Llib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 /*
