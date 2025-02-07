@@ -73,9 +73,6 @@ void perte_partie(SDL_Renderer* ren, int score, plateau t,TTF_Font* font, SDL_Co
 }
 
 int musique(char nom_doc[10], int fin){
-    // if (Buffer != {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07}){
-    //     wavBuffer = Buffer;
-    // }
     if (SDL_Init(SDL_INIT_AUDIO) < 0) {
         //printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return -1;

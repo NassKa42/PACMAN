@@ -72,34 +72,102 @@ fantome deplacement_fantome_proche(Player pacman, fantome ghost, plateau map) {
 
 fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, plateau map){
     int bouge = 0;
-    if (fantome_peut_avancer(ghost, map) == 1)
-    {
-        if (ghost.dir == 'h')
-        {
-            ghost.posY --;
-        }else if (ghost.dir == 'b')
-        {
-            ghost.posY ++;
-        }else if (ghost.dir == 'g')
-        {
-            ghost.posX --  ; 
-        }else
-        {
-            ghost.posX ++;
-        }
+    switch(ghost.dir){
+        case 'd':
+            ghost.dir = 'h';
+            if (fantome_peut_avancer(ghost, map) == 1){
+                bouge ++;
+            }
+            ghost.dir = 'b';
+            if (fantome_peut_avancer(ghost, map) == 1){
+                bouge ++;
+            }
+            ghost.dir = 'd';
+            if (bouge !=0){
+                ghost = deplacement_fantome_proche(pacman, ghost, map);
+            } else {
+                ghost.posX ++;
+            }
+            break;
+        case 'g':
+            ghost.dir = 'h';
+            if (fantome_peut_avancer(ghost, map) == 1){
+                bouge ++;
+            }
+            ghost.dir = 'b';
+            if (fantome_peut_avancer(ghost, map) == 1){
+                bouge ++;
+            }
+            ghost.dir = 'g';
+            if (bouge !=0){
+                ghost = deplacement_fantome_proche(pacman, ghost, map);
+            } else {
+                ghost.posX --;
+            }
+            break;
+        case 'h':
+            ghost.dir = 'd';
+            if (fantome_peut_avancer(ghost, map) == 1){
+                bouge ++;
+            }
+            ghost.dir = 'g';
+            if (fantome_peut_avancer(ghost, map) == 1){
+                bouge ++;
+            }
+            ghost.dir = 'h';
+            if (bouge !=0){
+                ghost = deplacement_fantome_proche(pacman, ghost, map);
+            } else {
+                ghost.posY --; 
+            }
+            break;
+        case 'b':
+            ghost.dir = 'd';
+            if (fantome_peut_avancer(ghost, map) == 1){
+                bouge ++;
+            }
+            ghost.dir = 'g';
+            if (fantome_peut_avancer(ghost, map) == 1){
+                bouge ++;
+            }
+            ghost.dir = 'b';
+            if (bouge !=0){
+                ghost = deplacement_fantome_proche(pacman, ghost, map);
+            } else {
+                ghost.posY ++; 
+            }
+            break;
+        default :
+            break;
+    } return ghost;
+//     if (fantome_peut_avancer(ghost, map) == 1)
+//     {
+//         if (ghost.dir == 'h')
+//         {
+//             ghost.posY --;
+//         }else if (ghost.dir == 'b')
+//         {
+//             ghost.posY ++;
+//         }else if (ghost.dir == 'g')
+//         {
+//             ghost.posX --  ; 
+//         }else
+//         {
+//             ghost.posX ++;
+//         }
         
         
         
         
-    }else
-    {
-            ghost = deplacement_fantome_proche(pacman, ghost, map);
-    }
+//     }else
+//     {
+//             ghost = deplacement_fantome_proche(pacman, ghost, map);
+//     }
     
     
     
-    return ghost;
-}
+//     return ghost;
+// }
 
 fantome deplacement_fantome_rng_intersection(fantome ghost, plateau map){
     int bouge = 0;
