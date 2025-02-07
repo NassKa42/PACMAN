@@ -139,7 +139,7 @@ fantome deplacement_fantome_proche_continue(Player pacman, fantome ghost, platea
             break;
         default :
             break;
-    } return ghost;
+    } return ghost; }
 //     if (fantome_peut_avancer(ghost, map) == 1)
 //     {
 //         if (ghost.dir == 'h')

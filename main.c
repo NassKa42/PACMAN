@@ -130,6 +130,7 @@ int main(int argc, char** argv){
             pacman = BougerAvecTest(pacman, dir, t);
             blinky = deplacement_fantome_proche(pacman, blinky, t);
             pinky = deplacement_fantome_proche_continue(pacman, pinky, t);
+            inky = deplacement_fantome_proche_continue(pacman, inky, t);
             clyde = deplacement_fantome_rng_intersection(clyde, t);
             SDL_RenderClear(ren);
             score = score_gum(pacman, t);
