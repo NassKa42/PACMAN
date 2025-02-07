@@ -48,6 +48,9 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
             };
             break;
         case 'b':
+            if (PosTableauY +1 == 9 && PosTableauX == 9){
+                break;
+            } else
             if ( (tableau.tab[PosTableauY+1][PosTableauX]!=1 && PosDansCaseX==0 ) || (tableau.tab[PosTableauY+1][PosTableauX]!=1 && tableau.tab[PosTableauYOpp+1][PosTableauXOpp]!=1 && PosDansCaseY!=0) ){
                 pakuman.y= pakuman.y+5;
             };
