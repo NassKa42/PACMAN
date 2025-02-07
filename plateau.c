@@ -201,6 +201,11 @@ SDL_Renderer* aff_fantome(int e_x, int e_y, SDL_Renderer* ren, char dir, char gh
         SDL_Texture* text_ghost = loadTexture("ghost_scared.bmp",ren);
         renderTexture(text_ghost,ren,e_x,e_y,ghostsize,ghostsize);
         return ren;
+    } else
+    if (big_gum_on == 2){
+        SDL_Texture* text_ghost = loadTexture("ghost_scared_2.bmp",ren);
+        renderTexture(text_ghost,ren,e_x,e_y,ghostsize,ghostsize);
+        return ren;
     }
     char nom_doc[13];
     switch(dir){
