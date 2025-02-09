@@ -47,6 +47,7 @@ int main(int argc, char** argv){
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'}};
 
     fantome inky = initFantome(10,10, "inky");
+    // fantome blinky = initFantome(1,1, "blinky");
     fantome blinky = initFantome(6,12, "blinky");
     fantome pinky = initFantome(6,10, "pinky"); //9 10
     fantome clyde = initFantome(8,10, "clyde");
@@ -146,7 +147,7 @@ int main(int argc, char** argv){
 
             // printf("%d \n", PeutBouger(dir, pacman, t));
             pacman = BougerAvecTest(pacman, dir, t);
-            blinky = deplacement_fantome_proche(pacman, blinky, t);
+            blinky = deplacement_fantome_proche_BFS2_new(pacman, blinky, t);
             pinky = deplacement_fantome_proche_continue(pacman, pinky, t);
             inky = deplacement_fantome_proche_continue(pacman, inky, t);
             clyde = deplacement_fantome_rng_intersection(clyde, t);
