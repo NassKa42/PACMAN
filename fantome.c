@@ -319,112 +319,13 @@ int is_collision_p2g(fantome ghost, Player pacman){
 
 fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
     /*Explication algo BFS 
-    l'algo va créer une file d'attente des noeuds a visiter et va a chaque fois visiter ce noeud en annotant 
-    les noeuds suivants, en conservant a chaque fois la distance parcourue depuis le noeud initial  FINIR EXPLICATIONS
-    https://www.youtube.com/watch?v=rbYxbIMOZkE&t=42s
-
-
     
-    */
-    position pacman;
-    position ghost;
-    position current;
-    pacman.x = paku.x;  
-    pacman.y = paku.y;
-    ghost.x = fantt.posX;
-    ghost.y = fantt.posY;
+    l'algorithme va visiter toutes les cases ou le deplacement est possible en partant de celle ou se situe le fantome. 
+    Il va ensuite analyser les noeuds adjacents, puis encore les noeuds adjacents non visités, en boucle jusqu'à atteindre la case
+    ou se situe pacman. En ayant stoqué à chaque itération de boucle le noeud parent, on peut remonter l'algorithme et donner au fantome 
+    la direction a suivre pour arriver vers pacman
 
-
-    position queue[map.large*map.haut]; // "liste d'attente" des noeuds a parcourir
-    position parent[map.haut][map.large]; // sert a reconstruire le chemin a lafin 
-    
-    int distance[map.haut][map.large];
-    for (int i = 0; i < map.haut; i++)
-    {
-        for (int j = 0; j < map.large; j++)
-        {
-            distance[i][j] = -1;
-            parent[i][j].x = -1;
-            parent[i][j].y = -1;
-            
-            }}
-
-    distance[ghost.y][ghost.x] = 0; // tableau repertoriant les distances au point initial
-    int avant = 0; // endroit ou on va lire
-    int arriere = 0; // endroit ou on écrit
-    queue[arriere] = ghost;
-    arriere++;
-    
-    int directionX[4] = {0,0,-1,1};
-    int directionY[4] = {-1,1,0,0};
-    char dir[4] = {'h', 'b', 'g','d'};
-    
-    printf("1");
-    while (avant < arriere)//fini quand ou on lit = ou on écrit
-    {
-        current = queue[avant];
-        avant ++;
-        fantome virtuel;
-        virtuel = initFantome(current.x, current.y, "osef");
-        // definition d'un fantome temporaire et inutile pour voir si aux coordonnées current, il y a pacman
-        if (is_collision_p2g(virtuel, paku)==1)
-        {
-            break;
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            int dirx = current.x+ directionX[i];
-            int diry = current.y+ directionY[i];
-
-            if (is_collision_e2b(dirx, diry, map)==0 && distance[diry][dirx] == -1) {
-                distance[diry][dirx] = distance[current.y][current.x] + 1;
-                parent[diry][dirx] = current;  
-                position tmp ;
-                tmp.x = dirx;
-                tmp.y = diry;
-                queue[arriere] = tmp;
-                arriere ++;
-        }
-        
-    }   
-    }
-    printf("2");
-    // MTN, retrouver le chemin le plus court
-    current = pacman;
-    position next ;
-    printf("debut boucle\n");
-for (int i = 0; i < map.haut; i++)
-{
-    for (int j = 0; j < map.large; j++)
-    {
-        printf("%d, %d\n", parent[i][j].x, parent[i][j].y);
-    }
-    
-}
-
-
-    while (!(parent[current.y][current.x].x == ghost.x && parent[current.y][current.x].y == ghost.y))
-    {
-        printf("dans la boucle\n");
-        next = current;
-        current = parent[current.y][current.x];
-        printf("%d, %d\n", next.x, next.y);
-
-    }
-    printf("3");
-    fantt.posX = next.x;
-    fantt.posY = next.y;
-    return fantt;
-    
-}
-
-fantome deplacement_fantome_proche_BFS2(Player paku,fantome fantt, plateau map){
-    /*Explication algo BFS 
-    l'algo va créer une file d'attente des noeuds a visiter et va a chaque fois visiter ce noeud en annotant 
-    les noeuds suivants, en conservant a chaque fois la distance parcourue depuis le noeud initial  FINIR EXPLICATIONS
-    https://www.youtube.com/watch?v=rbYxbIMOZkE&t=42s
-
-
+    visualisation de l'algorithme dans ce lien https://www.youtube.com/watch?v=rbYxbIMOZkE&t=42s
     
     */
     position pacman;
@@ -433,139 +334,13 @@ fantome deplacement_fantome_proche_BFS2(Player paku,fantome fantt, plateau map){
     pacman.x = paku.x/taillecase;  
     pacman.y = paku.y/taillecase;
     ghost.x = fantt.posX/taillecase; 
-    ghost.y = fantt.posY/taillecase; //convertit sur la grille
-
-
-    position queue[map.large*map.haut]; // "liste d'attente" des noeuds a parcourir
-    position parent[map.haut][map.large]; // sert a reconstruire le chemin a lafin 
-    
-    int distance[map.haut][map.large];
-    for (int i = 0; i < map.haut; i++)
-    {
-        for (int j = 0; j < map.large; j++)
-        {
-            distance[i][j] = -1;
-            parent[i][j].x = -1;
-            parent[i][j].y = -1;
-            
-            }}
-
-    distance[ghost.y][ghost.x] = 0; // tableau repertoriant les distances au point initial
-    int avant = 0; // endroit ou on va lire
-    int arriere = 0; // endroit ou on écrit
-    queue[arriere] = ghost;
-    arriere++;
-    
-    int directionX[4] = {0,0,-1,1};
-    int directionY[4] = {-1,1,0,0};
-    //                   h,b,g,d
-
-    paku.x = pacman.x*taillecase;
-    paku.y = pacman.y*taillecase;
-    while (avant < arriere)//fini quand ou on lit = ou on écrit
-    {
-        current = queue[avant];
-       
-        avant ++;
-        fantome virtuel;
-        virtuel = initFantome(current.x*taillecase, current.y*taillecase, "osef");
-        // definition d'un fantome temporaire et inutile pour voir si aux coordonnées current, il y a pacman
-        if (is_collision_p2g(virtuel, paku)==1)
-        {
-            break;
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            int dirx = current.x+ directionX[i];
-            int diry = current.y+ directionY[i];
-            
-            if (map.tab[diry][dirx] !=1 && distance[diry][dirx] == -1) {
-               
-                distance[diry][dirx] = distance[current.y][current.x] + 1;
-                parent[diry][dirx] = current;  
-                position tmp ;
-                tmp.x = dirx;
-                tmp.y = diry;
-                queue[arriere] = tmp;
-                arriere ++;
-        }
-        
-    }   
-    }
-   
-    // MTN, retrouver le chemin le plus court
-    current = pacman;
-    position next ;
-  
-// for (int i = 0; i < map.haut; i++)
-// {
-//     for (int j = 0; j < map.large; j++)
-//     {
-//         printf("%d, %d\n", parent[i][j].x, parent[i][j].y);
-//     }
-    
-// }
-
-
-    while (!(parent[current.y][current.x].x == ghost.x && parent[current.y][current.x].y == ghost.y))
-    {
-        // printf("dans la boucle\n");
-        next = current;
-        current = parent[current.y][current.x];
-        // printf("%d, %d\n", next.x, next.y);
-
-    }
-   
-
-    int dirx = ghost.x - next.x;
-    int diry = ghost.y - next.y;
-    if (dirx<0)
-    {
-        fantt.dir = 'd';
-        fantt.posX = fantt.posX + ghost_speed;
-    }else if (dirx>0)
-    {
-        fantt.dir = 'g';
-        fantt.posX = fantt.posX - ghost_speed;
-    }
-    if (diry<0)
-    {
-        fantt.dir = 'b';
-        fantt.posY = fantt.posY + ghost_speed;
-    }else if (diry>0)
-    {
-        fantt.dir = 'h';
-        fantt.posY = fantt.posY - ghost_speed;
-    }
-    
-    
-    
-    return fantt;
-    
-}
-
-fantome deplacement_fantome_proche_BFS2_new(Player paku,fantome fantt, plateau map){
-    /*Explication algo BFS 
-    l'algo va créer une file d'attente des noeuds a visiter et va a chaque fois visiter ce noeud en annotant 
-    les noeuds suivants, en conservant a chaque fois la distance parcourue depuis le noeud initial  FINIR EXPLICATIONS
-    https://www.youtube.com/watch?v=rbYxbIMOZkE&t=42s
-
-
-    
-    */
-    position pacman;
-    position ghost;
-    position current;
-    pacman.x = paku.x/taillecase;  
-    pacman.y = paku.y/taillecase;
-    ghost.x = fantt.posX/taillecase; 
-    ghost.y = fantt.posY/taillecase; //convertit sur la grille
+    ghost.y = fantt.posY/taillecase; //convertit sur la grille : pour le BFS, il faut utiliser le plateau et non "l'ecran de jeu" car trop de case sinon
     int bouge = 0;
 
     position queue[map.large*map.haut]; // "liste d'attente" des noeuds a parcourir
     position parent[map.haut][map.large]; // sert a reconstruire le chemin a lafin 
     
-    int distance[map.haut][map.large];
+    int distance[map.haut][map.large]; // tableau repertoriant les distances au point initial
     for (int i = 0; i < map.haut; i++)
     {
         for (int j = 0; j < map.large; j++)
@@ -576,7 +351,7 @@ fantome deplacement_fantome_proche_BFS2_new(Player paku,fantome fantt, plateau m
             
             }}
 
-    distance[ghost.y][ghost.x] = 0; // tableau repertoriant les distances au point initial
+    distance[ghost.y][ghost.x] = 0; 
     int avant = 0; // endroit ou on va lire
     int arriere = 0; // endroit ou on écrit
     queue[arriere] = ghost;
@@ -586,7 +361,7 @@ fantome deplacement_fantome_proche_BFS2_new(Player paku,fantome fantt, plateau m
     int directionY[4] = {-1,1,0,0};
     //                   h,b,g,d
 
-    while (avant < arriere)//fini quand ou on lit = ou on écrit
+    while (avant < arriere)
     {
         current = queue[avant];
        
@@ -603,12 +378,12 @@ fantome deplacement_fantome_proche_BFS2_new(Player paku,fantome fantt, plateau m
             
             if (map.tab[diry][dirx] !=1 && distance[diry][dirx] == -1) {
                
-                distance[diry][dirx] = distance[current.y][current.x] + 1;
-                parent[diry][dirx] = current;  
+                distance[diry][dirx] = distance[current.y][current.x] + 1; //permet de répertorier les distance, mais aussi de savoir si une case a ete visitée ou non
+                parent[diry][dirx] = current;  //pour remonter le chemin après
                 position tmp ;
                 tmp.x = dirx;
                 tmp.y = diry;
-                queue[arriere] = tmp;
+                queue[arriere] = tmp; 
                 arriere ++;
         }
         
@@ -619,50 +394,18 @@ fantome deplacement_fantome_proche_BFS2_new(Player paku,fantome fantt, plateau m
     current = pacman;
     position next ;
   
-// for (int i = 0; i < map.haut; i++)
-// {
-//     for (int j = 0; j < map.large; j++)
-//     {
-//         printf("%d, %d\n", parent[i][j].x, parent[i][j].y);
-//     }
-    
-// }
 
 
     while (!(parent[current.y][current.x].x == ghost.x && parent[current.y][current.x].y == ghost.y))
     {
-        // printf("dans la boucle\n");
         next = current;
-        current = parent[current.y][current.x];
-        // printf("%d, %d\n", next.x, next.y);
-
+        current = parent[current.y][current.x]; 
+        //sert à retrouver la case vers laquelle se diriger pour s'approcher de pacman
     }
    
 
     int dirx = ghost.x - next.x;
     int diry = ghost.y - next.y;
-    printf("dirx : %d, diry, %d \n", dirx,diry);
-    // if (dirx<0 )
-    // {
-    //     fantt.dir = 'd';
-    //     fantt.posX = fantt.posX + 1;
-    // }else if (dirx>0 )
-    // {
-    //     fantt.dir = 'g';
-    //     fantt.posX = fantt.posX - 1;
-    // }
-    // else if (diry<0 )
-    // {
-    //     fantt.dir = 'b';
-    //     fantt.posY = fantt.posY + 1;
-    // }else if (diry>0 )
-    // {
-    //     fantt.dir = 'h';
-    //     fantt.posY = fantt.posY - 1;
-    // }
-    
-
-
     if (dirx<0 && !is_collision_e2b(fantt.posX + ghostsize, fantt.posY, map) && !is_collision_e2b(fantt.posX + ghostsize, fantt.posY + ghostsize - 1, map)) {
         fantt.posX = fantt.posX + ghost_speed;
         fantt.dir = 'd';
@@ -687,8 +430,10 @@ fantome deplacement_fantome_proche_BFS2_new(Player paku,fantome fantt, plateau m
     }
     if (bouge == 0)
     {
-        fantt = deplacement_fantome_proche(paku, fantt, map);
-        printf("bouge = 0");
+        fantt = deplacement_fantome_proche(paku, fantt, map); 
+        // probleme : le fantome se bloque, donc pour réduire les fois ou il bloque, je le fais se déplacer d'une autre manière
+        // cela limite les cas ou il se bloque, mais je n'ai pas réussi à le faire fonctionner à tous les cours
+
     }
     
     

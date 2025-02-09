@@ -147,7 +147,7 @@ int main(int argc, char** argv){
 
             // printf("%d \n", PeutBouger(dir, pacman, t));
             pacman = BougerAvecTest(pacman, dir, t);
-            blinky = deplacement_fantome_proche_BFS2_new(pacman, blinky, t);
+            blinky = deplacement_fantome_proche_BFS(pacman, blinky, t);
             pinky = deplacement_fantome_proche_continue(pacman, pinky, t);
             inky = deplacement_fantome_proche_continue(pacman, inky, t);
             clyde = deplacement_fantome_rng_intersection(clyde, t);
