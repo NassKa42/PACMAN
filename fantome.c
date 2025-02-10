@@ -296,6 +296,8 @@ fantome deplacement_fantome_rng_intersection(fantome ghost, plateau map){
 
 
 int is_collision_p2g(fantome ghost, Player pacman){
+    pacman.y = (pacman.y + (taillecase / 2));
+    pacman.x = (pacman.x + (taillecase / 2));
     if (pacman.x >= ghost.posX && pacman.x <= ghost.posX + ghostsize){
         if (pacman.y >= ghost.posY && pacman.y <= ghost.posY + ghostsize){
             return 1; // collision
