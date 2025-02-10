@@ -69,6 +69,16 @@ int main(int argc, char** argv){
     SDL_Texture* texture_pac_11 = loadTexture("pakuman_11.bmp",ren);
     SDL_Texture* texture_pac_12 = loadTexture("pakuman_12.bmp",ren);
     SDL_Texture* texture_pac_13 = loadTexture("pakuman_13.bmp",ren);
+    SDL_Texture* texture_pac_death_1 = loadTexture("pakuman_death_1.bmp",ren);
+    SDL_Texture* texture_pac_death_2 = loadTexture("pakuman_death_2.bmp",ren);
+    SDL_Texture* texture_pac_death_3 = loadTexture("pakuman_death_3.bmp",ren);
+    SDL_Texture* texture_pac_death_4 = loadTexture("pakuman_death_4.bmp",ren);
+    SDL_Texture* texture_pac_death_5 = loadTexture("pakuman_death_5.bmp",ren);
+    SDL_Texture* texture_pac_death_6 = loadTexture("pakuman_death_6.bmp",ren);
+    SDL_Texture* texture_pac_death_7 = loadTexture("pakuman_death_7.bmp",ren);
+    SDL_Texture* texture_pac_death_8 = loadTexture("pakuman_death_8.bmp",ren);
+    SDL_Texture* texture_pac_death_9 = loadTexture("pakuman_death_9.bmp",ren);
+    SDL_Texture* texture_pac_death_10 = loadTexture("pakuman_death_10.bmp",ren);
     SDL_Texture* texture_pac_transparent = loadTexture("pakuman_transparent.bmp",ren);
     SDL_Texture* gum = loadTexture("gum.bmp",ren);
     SDL_Texture* wall = loadTexture("wall.bmp",ren);
@@ -235,7 +245,7 @@ int main(int argc, char** argv){
                 t.tab[start_y][start_x] = 0;
                 score_fruits = score_fruits -100;    
             }
-            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_0,texture_pac_5,texture_pac_transparent);
+            perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_death_1,texture_pac_death_2,texture_pac_death_3,texture_pac_death_4,texture_pac_death_5,texture_pac_death_6,texture_pac_death_7,texture_pac_death_8,texture_pac_death_9,texture_pac_death_10,texture_pac_transparent);
             hurt = 0;
             trash = processKeyboard();
             // SDL_Delay(1000);

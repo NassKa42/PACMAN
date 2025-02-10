@@ -15,22 +15,89 @@ char start(plateau t, SDL_Renderer* ren, TTF_Font* font, SDL_Color Red,SDL_Textu
     return c;
 }
 
-void perte_vie(SDL_Renderer* ren, int lives, Player pacman, plateau t,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise, SDL_Texture* ouvert, SDL_Texture* ferme, SDL_Texture* texture_pac_transparent){
-    for (int i = 0; i<2; i++){
-        SDL_RenderClear(ren);
-        ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
-        ren = aff_vies(lives +1 ,ren,texture_pac_transparent);
-        renderTexture(ouvert,ren,pacman.x,pacman.y,pacsize,pacsize);
-        updateDisplay(ren);
-        SDL_Delay(500);
-        SDL_RenderClear(ren);
-        ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
-        ren = aff_vies(lives ,ren,texture_pac_transparent);
-        renderTexture(ferme,ren,pacman.x,pacman.y,pacsize,pacsize);
-        updateDisplay(ren);
-        SDL_Delay(500);
-    }   
-}
+void perte_vie(SDL_Renderer* ren, int lives, Player pacman, plateau t,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise, SDL_Texture* mort1, SDL_Texture* mort2, SDL_Texture* mort3, SDL_Texture* mort4, SDL_Texture* mort5, SDL_Texture* mort6, SDL_Texture* mort7, SDL_Texture* mort8, SDL_Texture* mort9, SDL_Texture* mort10, SDL_Texture* texture_pac_transparent){
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives +1 ,ren,texture_pac_transparent);
+    renderTexture(mort1,ren,pacman.x,pacman.y,pacsize,pacsize);
+    updateDisplay(ren);
+    SDL_Delay(500);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort1,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort2,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort3,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort4,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort5,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort6,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort7,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort8,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort9,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    renderTexture(mort10,ren,pacman.x,pacman.y,pacsize,pacsize);
+    SDL_Delay(50);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
+    ren = aff_vies(lives ,ren,texture_pac_transparent);
+
+    SDL_Delay(500);
+}   
 
 void niveau_gagne(SDL_Renderer* ren , int score , Player pacman, plateau t, TTF_Font* font, SDL_Color White,SDL_Texture* gum,SDL_Texture* wall , SDL_Texture* biggum, SDL_Texture* cerise,SDL_Texture* droite, SDL_Texture* gauche){
     SDL_Delay(500);
