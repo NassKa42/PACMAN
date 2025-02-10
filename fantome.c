@@ -448,7 +448,6 @@ fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
     }
     if (bouge == 0)
     {
-        // fantt = deplacement_fantome_proche(paku, fantt, map); 
         fantt = deplacement_fantome_rng_intersection(fantt, map);
         // probleme : le fantome se bloque, donc pour réduire les fois ou il bloque, je le fais se déplacer d'une autre manière
         // cela limite les cas ou il se bloque, mais je n'ai pas réussi à le faire fonctionner à tous les cours
@@ -464,6 +463,49 @@ fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
     
     return fantt;
     
+}
+
+fantome deplacement_fantome_proche_BFS_avant(Player paku,fantome fantt, char dir, plateau map){
+    position pacman;
+    pacman.x = paku.x/taillecase;  
+    pacman.y = paku.y/taillecase;
+
+    switch (dir)
+    {
+    case 'h':
+        if (map.tab[pacman.y-1][pacman.x] !=1)
+        {
+            map.tab[pacman.y][pacman.x] = 1;
+        }
+        pacman.y = paku.y - pacsize;
+        break;
+    
+    case 'b':
+    if (map.tab[pacman.y+1][pacman.x] !=1)
+        {
+            map.tab[pacman.y][pacman.x] = 1;
+        }
+pacman.y = paku.y + pacsize;        break;
+    case 'g':
+    if(map.tab[pacman.y][pacman.x-1] !=1)
+        {
+            map.tab[pacman.y][pacman.x] = 1;
+        }
+pacman.y = paku.x - pacsize;        break;
+    case 'd':
+    if(map.tab[pacman.y][pacman.x+1] !=1)
+        {
+            map.tab[pacman.y][pacman.x] = 1;
+        }
+pacman.y = paku.x+ pacsize;        break;        
+    default:
+        break;
+    }
+
+    deplacement_fantome_proche_BFS(paku, fantt, map);
+
+    map.tab[pacman.y][pacman.x] = 0;
+    return fantt;
 }
 
 
