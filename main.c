@@ -48,7 +48,7 @@ int main(int argc, char** argv){
 
     fantome inky = initFantome(10,10, "inky");
     // fantome blinky = initFantome(1,1, "blinky");
-    fantome blinky = initFantome(6,12, "blinky");
+    fantome blinky = initFantome(9,9, "blinky");
     fantome pinky = initFantome(6,10, "pinky"); //9 10
     fantome clyde = initFantome(8,10, "clyde");
     Player pacman = initPlayer("Perso1");
@@ -254,7 +254,7 @@ int main(int argc, char** argv){
             fruit_spawned = 0;
         }
         inky = reset_fantome(inky,10,10);
-        blinky = reset_fantome(blinky,6,12);
+        blinky = reset_fantome(blinky,9,9);
         pinky = reset_fantome(pinky,9,10);
         clyde = reset_fantome(clyde,8,10);
         pacman = reset_player(pacman);
