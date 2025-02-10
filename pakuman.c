@@ -33,11 +33,17 @@ Player BougerAvecTest(Player pakuman,char direction, plateau tableau){
     int PosOppDansCaseY=(pakuman.y+pacsize-1)%taillecase;
     switch (direction){
         case 'g' :
+            if (pakuman.x <5){
+                pakuman.x = (taillecase * tableau.large) - pac_speed;
+            }
             if ( (tableau.tab[PosTableauY][PosTableauX]!=1 && PosDansCaseY==0 && tableau.tab[PosTableauY][(pakuman.x-1)/taillecase]!=1) || (tableau.tab[PosTableauY][PosTableauX-1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp-1]!=1 && PosDansCaseX!=0) ){
                 pakuman.x= pakuman.x-pac_speed;
             };
             break;
         case 'd':
+            if (pakuman.x >(taillecase * tableau.large)){
+                pakuman.x = pac_speed;
+            }
             if ( (tableau.tab[PosTableauY][PosTableauX+1]!=1 && PosDansCaseY==0 ) || (tableau.tab[PosTableauY][PosTableauX+1]!=1 && tableau.tab[PosTableauYOpp][PosTableauXOpp+1]!=1 && PosDansCaseX!=0) ){
                 pakuman.x= pakuman.x+pac_speed;
             };

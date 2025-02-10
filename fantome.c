@@ -301,19 +301,19 @@ int is_collision_p2g(fantome ghost, Player pacman){
     if (pacman.x >= ghost.posX && pacman.x <= ghost.posX + ghostsize){
         if (pacman.y >= ghost.posY && pacman.y <= ghost.posY + ghostsize){
             return 1; // collision
-        } else if (pacman.y + pacsize >= ghost.posY && pacman.y + pacsize <= ghost.posY + ghostsize){
-            return 1;
-        } else {
-            return 0;
-        }
-    } else if (pacman.x + pacsize >= ghost.posX && pacman.x + pacsize <= ghost.posX + ghostsize){
-        if (pacman.y >= ghost.posY && pacman.y <= ghost.posY + ghostsize){
-            return 1; // collision
-        } else if (pacman.y + pacsize >= ghost.posY && pacman.y + pacsize <= ghost.posY + ghostsize){
-            return 1;
-        } else {
-            return 0;
-        }
+        // } else if (pacman.y + pacsize >= ghost.posY && pacman.y + pacsize <= ghost.posY + ghostsize){
+        //     return 1;
+            } else {
+                return 0;
+            }
+    // } else if (pacman.x + pacsize >= ghost.posX && pacman.x + pacsize <= ghost.posX + ghostsize){
+    //     if (pacman.y >= ghost.posY && pacman.y <= ghost.posY + ghostsize){
+    //         return 1; // collision
+    //     } else if (pacman.y + pacsize >= ghost.posY && pacman.y + pacsize <= ghost.posY + ghostsize){
+    //         return 1;
+    //     } else {
+    //         return 0;
+    //     }
     } else {
         return 0;
     }
