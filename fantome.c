@@ -331,7 +331,7 @@ fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
     
     */
    
-    // printf("debut\n");
+
     position pacman;
     position ghost;
     position current;
@@ -373,7 +373,6 @@ fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
         avant ++;
         if (current.x == pacman.x && current.y == pacman.y)
         {
-            // printf("brr\n");
             break; // voir pour le guider plus simplement si ya pas eu de collision mais que ils sont sur la mm case
         }
         for (int i = 0; i < 4; i++)
@@ -410,7 +409,6 @@ fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
             
             
             }}
-            // printf("%d", tempo);
     if (tempo > 1)
     {
          
@@ -430,26 +428,22 @@ fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
         fantt.posX = fantt.posX + ghost_speed;
         fantt.dir = 'd';
         bouge ++;
-        // printf("droite");
 
     } else
     if (bouge == 0 && dirx > 0 &&  !is_collision_e2b(fantt.posX - 1, fantt.posY, map) && !is_collision_e2b(fantt.posX - 1, fantt.posY + ghostsize - 1, map)) {
         fantt.posX = fantt.posX - ghost_speed;
         fantt.dir = 'g';bouge ++;
-        // printf("gauche");
 
     }else if (bouge == 0 && diry < 0 &&  !is_collision_e2b(fantt.posX, fantt.posY + ghostsize, map) && !is_collision_e2b(fantt.posX + ghostsize - 1, fantt.posY + ghostsize, map)) {
         fantt.posY = fantt.posY + ghost_speed;
         fantt.dir = 'b';
         bouge ++;
-        // printf("bas");
 
     } else
     if (bouge == 0 && diry > 0 &&  !is_collision_e2b(fantt.posX, fantt.posY - 1, map) && !is_collision_e2b(fantt.posX + ghostsize - 1, fantt.posY - 1, map)) {
         fantt.posY = fantt.posY - ghost_speed;
         fantt.dir = 'h';
         bouge ++;
-        // printf("haut");
 
     }
     if (bouge == 0)
@@ -460,22 +454,6 @@ fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
         // cela limite les cas ou il se bloque, mais je n'ai pas réussi à le faire fonctionner à tous les cours
 
     }
-    // if (!is_collision_e2b(fantt.posX + ghostsize, fantt.posY, map) && !is_collision_e2b(fantt.posX + ghostsize, fantt.posY + ghostsize - 1, map)) {
-    //     // printf("peut aller a droite\n");
-
-    // } 
-    // if (!is_collision_e2b(fantt.posX - 1, fantt.posY, map) && !is_collision_e2b(fantt.posX - 1, fantt.posY + ghostsize - 1, map)) {
-        
-    //     // printf("peut aller a gauche\n");
-
-    // } if (!is_collision_e2b(fantt.posX, fantt.posY + ghostsize, map) && !is_collision_e2b(fantt.posX + ghostsize - 1, fantt.posY + ghostsize, map)) {
-    //             // printf("peut aller a bas\n");
-
-    // } 
-    // if (!is_collision_e2b(fantt.posX, fantt.posY - 1, map) && !is_collision_e2b(fantt.posX + ghostsize - 1, fantt.posY - 1, map)) {
-    //     // printf("peut aller a haut\n");
-
-    // }
 
     }
     else
@@ -484,7 +462,6 @@ fantome deplacement_fantome_proche_BFS(Player paku,fantome fantt, plateau map){
     }
     
     
-    // printf("fin\n");
     return fantt;
     
 }
