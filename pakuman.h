@@ -16,7 +16,7 @@
 #ifndef PatoisDuNord
 #define PatoisDuNord
 
-struct PlayerStruct{char name; int x; int y; char orientation; int score;};
+struct PlayerStruct{char name; int x; int y; int score;};
 typedef struct PlayerStruct Player;
 Player initPlayer(char* name);
 Player reset_player(Player pacman);

@@ -11,7 +11,6 @@ Player initPlayer(char* name){
     Player personnage;
     personnage.x = start_x*taillecase;
     personnage.y = start_y*taillecase;
-    personnage.orientation = 'd';
     personnage.score = 0;
     return personnage;
 };
