@@ -91,13 +91,14 @@ int main(int argc, char** argv){
     int compteurframes=0;
     int etapeanimation=0;
     int big_gum_on =0;
-    int debut_gum = 0;
+    int debut_gum;
     int duree_gum = 500;
     int score = 0;
     int score_fantomes = 0;
     int fruit_spawned = 0;
     int entraindouvrirlabouche=0;
     while (lives >0){
+        debut_gum = 200000000;
         big_gum_on = 0;
         secondaire = ' ';
         dir = ' ';
@@ -159,7 +160,6 @@ int main(int argc, char** argv){
                 debut_gum = compteurframes;
             }
             pacman.score = pacman.score + score;
-            
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
             
             ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3,texture_pac_10, texture_pac_11, texture_pac_12, texture_pac_13, texture_pac_5,etapeanimation);            
