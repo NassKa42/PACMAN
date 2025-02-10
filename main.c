@@ -34,7 +34,7 @@ int main(int argc, char** argv){
 {'w','w','w','w','v','w','w','w','v','w','v','w','w','w','v','w','w','w','w'},
 {'w','w','w','w','v','w','v','v','v','v','v','v','v','w','v','w','w','w','w'},
 {'w','w','w','w','v','w','v','w','w','v','w','w','v','w','v','w','w','w','w'},
-{'v','v','v','v','v','w','v','w','v','v','v','w','v','w','v','v','v','v','v'},
+{'w','w','w','w','v','v','v','w','v','v','v','w','v','v','v','w','w','w','w'},
 {'w','w','w','w','v','w','v','w','w','w','w','w','v','w','v','w','w','w','w'},
 {'w','w','w','w','v','w','v','v','v','v','v','v','v','w','v','w','w','w','w'},
 {'w','w','w','w','v','w','w','w','v','w','v','w','w','w','v','w','w','w','w'},
@@ -49,7 +49,7 @@ int main(int argc, char** argv){
     fantome inky = initFantome(10,10, "inky");
     // fantome blinky = initFantome(1,1, "blinky");
     fantome blinky = initFantome(9,9, "blinky");
-    fantome pinky = initFantome(9,10, "pinky"); //9 10
+    fantome pinky = initFantome(6,10, "pinky"); //9 10
     fantome clyde = initFantome(8,10, "clyde");
     Player pacman = initPlayer("Perso1");
     plateau t = initPlateau(map);
