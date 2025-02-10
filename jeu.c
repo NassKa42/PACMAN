@@ -164,3 +164,18 @@ int musique(char nom_doc[10], int fin){
     SDL_QueueAudio(1, wavBuffer, wavLength);
     
 }
+
+char start_choix(plateau t, SDL_Renderer* ren, TTF_Font* font, SDL_Color Red){
+    char c=' ';
+    printText(((taillecase*t.large)/2)-250,((taillecase*t.haut)/2)-40,"Fleche de droite pour le Pacman",500,80,font,Red, ren);
+    printText(((taillecase*t.large)/2)-250,((taillecase*t.haut)/2)+50,"Fleche de gauche pour le Minecraft",500,80,font,Red, ren);
+    updateDisplay(ren);
+    SDL_RenderClear(ren);
+    
+        while(c == ' ' || c == 'h' || c == 'b'){
+        c = processKeyboard();
+        }
+        
+        
+    return c;
+}

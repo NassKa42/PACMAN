@@ -19,10 +19,6 @@ MAP :
 
 int main(int argc, char** argv){
     musique("calm1.wav", 0);
-    // caracfantome(inky);
-    // caracfantome(blinky);
-    // caracfantome(pinky);
-    // caracfantome(clyde);
     char map[21][19]={
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'},
 {'w','g','g','g','g','g','g','g','g','w','g','g','g','g','g','g','g','g','w'},
@@ -47,45 +43,102 @@ int main(int argc, char** argv){
 {'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'}};
 
     fantome inky = initFantome(10,10, "inky");
-    // fantome blinky = initFantome(1,1, "blinky");
     fantome blinky = initFantome(9,9, "blinky");
     fantome pinky = initFantome(9,10, "pinky"); //9 10
     fantome clyde = initFantome(8,10, "clyde");
     Player pacman = initPlayer("Perso1");
     plateau t = initPlateau(map);
-    //t.tab[start_y][start_x] = 4;
     initSDL();
     initTTF();
     SDL_Color Red ={255,0,0,0};
     SDL_Color White ={255,255,255,0};
-    SDL_Window * win = SDL_CreateWindow("My video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 19*30, 21*30, SDL_WINDOW_RESIZABLE);
-    SDL_Renderer * ren = createRenderer(win);
-    SDL_Texture* texture_pac_0 = loadTexture("pakuman_0.bmp",ren);
-    SDL_Texture* texture_pac_1 = loadTexture("pakuman_1.bmp",ren);
-    SDL_Texture* texture_pac_2 = loadTexture("pakuman_2.bmp",ren);
-    SDL_Texture* texture_pac_3 = loadTexture("pakuman_3.bmp",ren);
-    SDL_Texture* texture_pac_5 = loadTexture("pakuman_5.bmp",ren);
-    SDL_Texture* texture_pac_10 = loadTexture("pakuman_10.bmp",ren);
-    SDL_Texture* texture_pac_11 = loadTexture("pakuman_11.bmp",ren);
-    SDL_Texture* texture_pac_12 = loadTexture("pakuman_12.bmp",ren);
-    SDL_Texture* texture_pac_13 = loadTexture("pakuman_13.bmp",ren);
-    SDL_Texture* texture_pac_death_1 = loadTexture("pakuman_death_1.bmp",ren);
-    SDL_Texture* texture_pac_death_2 = loadTexture("pakuman_death_2.bmp",ren);
-    SDL_Texture* texture_pac_death_3 = loadTexture("pakuman_death_3.bmp",ren);
-    SDL_Texture* texture_pac_death_4 = loadTexture("pakuman_death_4.bmp",ren);
-    SDL_Texture* texture_pac_death_5 = loadTexture("pakuman_death_5.bmp",ren);
-    SDL_Texture* texture_pac_death_6 = loadTexture("pakuman_death_6.bmp",ren);
-    SDL_Texture* texture_pac_death_7 = loadTexture("pakuman_death_7.bmp",ren);
-    SDL_Texture* texture_pac_death_8 = loadTexture("pakuman_death_8.bmp",ren);
-    SDL_Texture* texture_pac_death_9 = loadTexture("pakuman_death_9.bmp",ren);
-    SDL_Texture* texture_pac_death_10 = loadTexture("pakuman_death_10.bmp",ren);
-    SDL_Texture* texture_pac_transparent = loadTexture("pakuman_transparent.bmp",ren);
-    SDL_Texture* gum = loadTexture("gum.bmp",ren);
-    SDL_Texture* wall = loadTexture("wall.bmp",ren);
-    SDL_Texture* biggum = loadTexture("bigGum.bmp",ren);
-    SDL_Texture* cerise = loadTexture("cherry.bmp",ren);
     SDL_Color Black ={0,0,0,0};
     TTF_Font* font = createFont("./DejaVuSans-Bold.ttf", 20);
+    SDL_Window * win = SDL_CreateWindow("My video game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 19*30, 21*30, SDL_WINDOW_RESIZABLE);
+    SDL_Renderer * ren = createRenderer(win);
+    char choix = start_choix(t, ren, font, Red); // selection pack de texture
+
+    char texture_pac_0_text[20] = "pakuman_0.bmp";
+    char texture_pac_1_text[20] = "pakuman_1.bmp";
+    char texture_pac_2_text[20] = "pakuman_2.bmp";
+    char texture_pac_3_text[20] = "pakuman_3.bmp";
+    char texture_pac_5_text[20] = "pakuman_5.bmp";
+    char texture_pac_10_text[20] = "pakuman_10.bmp";
+    char texture_pac_11_text[20] = "pakuman_11.bmp";
+    char texture_pac_12_text[20] = "pakuman_12.bmp";
+    char texture_pac_13_text[20] = "pakuman_13.bmp";
+    char texture_pac_death_1_text[20] = "pakuman_death_1.bmp";
+    char texture_pac_death_2_text[20] = "pakuman_death_2.bmp";
+    char texture_pac_death_3_text[20] = "pakuman_death_3.bmp";
+    char texture_pac_death_4_text[20] = "pakuman_death_4.bmp";
+    char texture_pac_death_5_text[20] = "pakuman_death_5.bmp";
+    char texture_pac_death_6_text[20] = "pakuman_death_6.bmp";
+    char texture_pac_death_7_text[20] = "pakuman_death_7.bmp";
+    char texture_pac_death_8_text[20] = "pakuman_death_8.bmp";
+    char texture_pac_death_9_text[20] = "pakuman_death_9.bmp";
+    char texture_pac_death_10_text[21] = "pakuman_death_10.bmp";
+    char texture_pac_transparent_text[25] = "pakuman_transparent.bmp";
+    char gum_text[20] = "gum.bmp";
+    char wall_text[20] = "wall.bmp";
+    char biggum_text[20] = "bigGum.bmp";
+    char cherry_text[20] = "cherry.bmp";
+
+
+    if (choix == 'g'){
+        strcpy(texture_pac_0_text,"steve_droite.bmp");
+        strcpy(texture_pac_1_text,"steve.bmp");
+        strcpy(texture_pac_1_text , "steve.bmp");
+        strcpy(texture_pac_2_text , "steve_gauche.bmp");
+        strcpy(texture_pac_3_text , "steve.bmp");
+        strcpy(texture_pac_5_text , "steve.bmp");
+        strcpy(texture_pac_10_text , "steve_droite.bmp");
+        strcpy(texture_pac_11_text , "steve.bmp");
+        strcpy(texture_pac_12_text , "steve_gauche.bmp");
+        strcpy(texture_pac_13_text , "steve.bmp");
+        strcpy(texture_pac_death_1_text , "steve_hurt.bmp");
+        strcpy(texture_pac_death_2_text , "mc_death_2.bmp");
+        strcpy(texture_pac_death_3_text , "mc_death_3.bmp");
+        strcpy(texture_pac_death_4_text , "mc_death_4.bmp");
+        strcpy(texture_pac_death_5_text , "mc_death_5.bmp");
+        strcpy(texture_pac_death_6_text , "mc_death_6.bmp");
+        strcpy(texture_pac_death_7_text , "mc_death_7.bmp");
+        strcpy(texture_pac_death_8_text , "mc_death_8.bmp");
+        strcpy(texture_pac_death_9_text , "mc_death_9.bmp");
+        strcpy(texture_pac_death_10_text , "mc_death_10.bmp");
+        strcpy(texture_pac_transparent_text , "heart.bmp");
+        strcpy(gum_text , "eme.bmp");
+        strcpy(wall_text , "stone.bmp");
+        strcpy(biggum_text , "dia.bmp");
+        strcpy(cherry_text , "gap.bmp");
+    }
+    
+
+    SDL_Texture* texture_pac_0 = loadTexture(texture_pac_0_text,ren);
+    SDL_Texture* texture_pac_1 = loadTexture(texture_pac_1_text,ren);
+    SDL_Texture* texture_pac_2 = loadTexture(texture_pac_2_text,ren);
+    SDL_Texture* texture_pac_3 = loadTexture(texture_pac_3_text,ren);
+    SDL_Texture* texture_pac_5 = loadTexture(texture_pac_5_text,ren);
+    SDL_Texture* texture_pac_10 = loadTexture(texture_pac_10_text,ren);
+    SDL_Texture* texture_pac_11 = loadTexture(texture_pac_11_text,ren);
+    SDL_Texture* texture_pac_12 = loadTexture(texture_pac_12_text,ren);
+    SDL_Texture* texture_pac_13 = loadTexture(texture_pac_13_text,ren);
+    SDL_Texture* texture_pac_death_1 = loadTexture(texture_pac_death_1_text,ren);
+    SDL_Texture* texture_pac_death_2 = loadTexture(texture_pac_death_2_text,ren);
+    SDL_Texture* texture_pac_death_3 = loadTexture(texture_pac_death_3_text,ren);
+    SDL_Texture* texture_pac_death_4 = loadTexture(texture_pac_death_4_text,ren);
+    SDL_Texture* texture_pac_death_5 = loadTexture(texture_pac_death_5_text,ren);
+    SDL_Texture* texture_pac_death_6 = loadTexture(texture_pac_death_6_text,ren);
+    SDL_Texture* texture_pac_death_7 = loadTexture(texture_pac_death_7_text,ren);
+    SDL_Texture* texture_pac_death_8 = loadTexture(texture_pac_death_8_text,ren);
+    SDL_Texture* texture_pac_death_9 = loadTexture(texture_pac_death_9_text,ren);
+    SDL_Texture* texture_pac_death_10 = loadTexture(texture_pac_death_10_text,ren);
+    SDL_Texture* texture_pac_transparent = loadTexture(texture_pac_transparent_text,ren);
+    SDL_Texture* gum = loadTexture(gum_text,ren);
+    SDL_Texture* wall = loadTexture(wall_text,ren);
+    SDL_Texture* biggum = loadTexture(biggum_text,ren);
+    SDL_Texture* cerise = loadTexture(cherry_text,ren);
+
+    // initialisation des variables
     graphPlateau(ren,t, gum, wall, biggum, cerise);
     updateDisplay(ren);
     char dir;
@@ -112,7 +165,7 @@ int main(int argc, char** argv){
         big_gum_on = 0;
         secondaire = ' ';
         dir = ' ';
-        dir = start(t, ren, font, Red, gum, wall, biggum, cerise);
+        dir = start(t, ren, font, Red, gum, wall, biggum, cerise); // écran de début en attente d'une touche
         while (finitopipo ==1 && hurt == 0){   
 
             tempo = processKeyboard();
@@ -155,14 +208,14 @@ int main(int argc, char** argv){
             };
 
             compteurframes++;
-
-            // printf("%d \n", PeutBouger(dir, pacman, t));
+            //deplacements
             pacman = BougerAvecTest(pacman, dir, t);
             blinky = deplacement_fantome_proche_BFS(pacman, blinky, t);
             pinky = deplacement_fantome_proche_continue(pacman, pinky, t);
-            inky = deplacement_fantome_proche_continue(pacman, inky, t);
+            inky = deplacement_fantome_rng_intersection( inky, t);
             clyde = deplacement_fantome_rng_intersection(clyde, t);
             SDL_RenderClear(ren);
+            //scores
             score = score_gum(pacman, t);
             t = remove_gum(pacman.x,pacman.y,t);
             if (score == 50){
@@ -170,6 +223,8 @@ int main(int argc, char** argv){
                 debut_gum = compteurframes;
             }
             pacman.score = pacman.score + score;
+
+            //on met tout sur le renderer
             ren = graphPlateau(ren, t, gum, wall, biggum, cerise);
             
             ren = aff_pac(pacman.x, pacman.y, ren, dir, texture_pac_0, texture_pac_1, texture_pac_2, texture_pac_3,texture_pac_10, texture_pac_11, texture_pac_12, texture_pac_13, texture_pac_5,etapeanimation);            
@@ -179,6 +234,8 @@ int main(int argc, char** argv){
             ren = aff_fantome(clyde.posX,clyde.posY,ren,clyde.dir,clyde.name,big_gum_on);
             ren = aff_vies(lives ,ren,texture_pac_transparent);
             aff_score(pacman.score, ren, font, White);
+            
+            //tests de collisions
             if (is_collision_p2g(blinky, pacman) == 1){
                 if (big_gum_on == 0){
                     hurt = 1;
@@ -219,10 +276,15 @@ int main(int argc, char** argv){
                     pacman.score = pacman.score+200;
                 }
             }
+
             updateDisplay(ren);
+
+            // on regarde si il a récupéré toutes les gums + big gums + fruits
             if (pacman.score == (score_niv * niv) + score_fruits + score_fantomes){
                 finitopipo = 0;
             }
+
+            // activation / desactivation de la big gum
             if (compteurframes - duree_gum > debut_gum - 100){
                 if ((compteurframes/10)%2 ==0){
                     big_gum_on = 2;
@@ -243,17 +305,13 @@ int main(int argc, char** argv){
         if (hurt == 1){
             if (t.tab[start_y][start_x] == 4){
                 t.tab[start_y][start_x] = 0;
-                score_fruits = score_fruits -100;    
+                score_fruits = score_fruits -100;    // on enleve la cerise si elle y etait
             }
             perte_vie(ren, lives, pacman,t, gum, wall, biggum, cerise,texture_pac_death_1,texture_pac_death_2,texture_pac_death_3,texture_pac_death_4,texture_pac_death_5,texture_pac_death_6,texture_pac_death_7,texture_pac_death_8,texture_pac_death_9,texture_pac_death_10,texture_pac_transparent);
             hurt = 0;
             trash = processKeyboard();
-            // SDL_Delay(1000);
-            // musique("calm1.wav", 1);
-            // musique("hit3.wav",0);
-            // SDL_Delay(1000);
-            // musique("hit3", 1);
-            // musique("calm1.wav", 0);
+        
+        //on passe au niveau suivant
         } else if (finitopipo == 0){
             finitopipo = 1;
             niv ++;
